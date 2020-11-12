@@ -16,7 +16,8 @@
         "expandable-chapters-small",
         "anchors",
         "sharing-plus",
-        "anchor-navigation-ex"
+        "anchor-navigation-ex",
+        "favicon-absolute"
     ],
     "pluginsConfig": {
         "insert-logo": {
@@ -61,14 +62,9 @@
         "anchor-navigation-ex": {
             "showLevel": false
         },
-        "favicon": {
-            "shortcut": "./images/favicon.png",
-            "bookmark": "./images/favicon.png",
-            "appleTouch": "./images/favicon.png",
-            "appleTouchMore": {
-                "120x120": "./images/favicon.png",
-                "180x180": "./images/favicon.png"
-            }
+        "favicon-absolute": {
+            "favicon": "/images/favicon.ico",
+            "appleTouchIconPrecomposed152": "/images/QQ图片20201112112441.png"
         }
     }
 }
