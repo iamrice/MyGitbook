@@ -16,8 +16,7 @@
         "expandable-chapters-small",
         "anchors",
         "sharing-plus",
-        "anchor-navigation-ex",
-        "insert-logo"
+        "anchor-navigation-ex"
     ],
     "pluginsConfig": {
         "insert-logo": {
