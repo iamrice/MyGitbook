@@ -1,0 +1,11 @@
+h1,h2{
+	border-bottom:2px solid #EFEAEA;
+}
+
+.gitbook-link {
+ 	display: none !important;
+}
+
+.book-logo{
+	display: flex !important;
+}
