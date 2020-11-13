@@ -17,7 +17,8 @@
         "anchors",
         "sharing-plus",
         "anchor-navigation-ex",
-        "favicon-absolute"
+        "favicon-absolute",
+        "popup"
     ],
     "pluginsConfig": {
         "insert-logo": {
