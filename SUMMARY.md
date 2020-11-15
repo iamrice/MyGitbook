@@ -6,10 +6,10 @@
 
 ## Part II 
 
-* [关于演化博弈](partII/关于演化博弈.md)
-* [大规模优化中的资源分配](partII/大规模优化中的资源分配.md)
+* [关于演化博弈](PartII/关于演化博弈.md)
+* [大规模优化中的资源分配](PartII/大规模优化中的资源分配.md)
 
 ## Part III 
 
-* [杂感](partIII/杂感.md)
+* [杂感](PartIII/杂感.md)
 
