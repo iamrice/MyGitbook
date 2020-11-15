@@ -1,0 +1,287 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>大规模优化中的资源分配 · Born To Fire</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="TAIU">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../part-iii/za-gan.html" />
+    
+    
+    <link rel="prev" href="guan-yu-yan-hua-bo-yi.html" />
+    
+
+    
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    
+    
+    
+    
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/QQ图片20201112112441.png">
+    
+    
+        
+    
+    
+        
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    born to fire 🔥
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Part I</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="guan-yu-yan-hua-bo-yi.html">
+            
+                <a href="guan-yu-yan-hua-bo-yi.html">
+            
+                    
+                    关于演化博弈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2" data-path="da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.html">
+            
+                <a href="da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.html">
+            
+                    
+                    大规模优化中的资源分配
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Part II</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../part-iii/za-gan.html">
+            
+                <a href="../part-iii/za-gan.html">
+            
+                    
+                    杂感
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >大规模优化中的资源分配</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;"><b></b>&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;</a></li></ul></div><a href="#&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;"><a name="&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;" class="anchor-navigation-ex-anchor" href="#&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;" class="plugin-anchor" href="#&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5927;&#x89C4;&#x6A21;&#x4F18;&#x5316;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;</h1>
+<p>&#x52A0;&#x6CB9;&#x52A0;&#x6CB9;&#xFF0C;&#x4E89;&#x53D6;&#x8FD9;&#x5B66;&#x671F;&#x505A;&#x5B8C;&#x8FD9;&#x4E2A;&#x5DE5;&#x4F5C;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x6765;&#x5199;&#x603B;&#x7ED3;&#xFF0C;&#x6211;&#x8981;carry!!!</p>
+<p>  var gitalk = new Gitalk({<br>    &quot;clientID&quot;: &quot;&#x9700;&#x8981;&#x8865;&#x5145;&#x7684; clientID&quot;,<br>    &quot;clientSecret&quot;: &quot;&#x9700;&#x8981;&#x8865;&#x5145;&#x7684; clientSecret&quot;,<br>    &quot;repo&quot;: &quot;document-library&quot;,<br>    &quot;owner&quot;: &quot;LiangJunrong&quot;,<br>    &quot;admin&quot;: [&quot;LiangJunrong&quot;],<br>    &quot;id&quot;: location.pathname,<br>    &quot;distractionFreeMode&quot;: false<br>  });<br>  gitalk.render(&quot;gitalk-container&quot;);  </p>
+
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="guan-yu-yan-hua-bo-yi.html" class="navigation navigation-prev " aria-label="Previous page: 关于演化博弈">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../part-iii/za-gan.html" class="navigation navigation-next " aria-label="Next page: 杂感">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"大规模优化中的资源分配","level":"2.2","depth":1,"next":{"title":"杂感","level":"3.1","depth":1,"path":"part-iii/za-gan.md","ref":"part-iii/za-gan.md","articles":[]},"previous":{"title":"关于演化博弈","level":"2.1","depth":1,"path":"part-ii/guan-yu-yan-hua-bo-yi.md","ref":"part-ii/guan-yu-yan-hua-bo-yi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-search","expandable-chapters-small","anchors","sharing-plus","anchor-navigation-ex","favicon-absolute","popup","disqus"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"realhiphop"},"github":{"url":"https://github.com/iamrice"},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"/images/QQ图片20201112112441.png","appleTouchIconPrecomposedMore":{},"favicon":"/images/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Blankj","repo":"glory","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","pdf":"styles/pdf.css","epub":"styles/epub.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"images/微信图片_20201004195028.jpg","style":"background:none;height: 80px;border-radius:10%;"}},"theme":"default","author":"TAIU","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Born To Fire","language":"zh-hans","gitbook":"3.2.3","description":"动感地带"},"file":{"path":"part-ii/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md","mtime":"2020-11-15T08:17:05.324Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-15T08:29:59.474Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
