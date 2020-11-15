@@ -1,12 +1,13 @@
-# Summary
+# Table of contents
 
-###Part I
+* [born to fire 🔥](README.md)
 
-* [Born To Fire](README.md)
+## Part I <a id="part-ii"></a>
 
-###Part II
-* [关于演化博弈](PartII/关于演化博弈.md)
-* [大规模优化中的资源分配](PartII/大规模优化中的资源分配.md)
+* [关于演化博弈](part-ii/guan-yu-yan-hua-bo-yi.md)
+* [大规模优化中的资源分配](part-ii/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
 
-###Part III
-* [杂感](PartIII/杂感.md)
+## Part II <a id="part-iii"></a>
+
+* [杂感](part-iii/za-gan.md)
+
