@@ -1,7 +1,7 @@
 {
     "title": "Born To Fire",
     "author": "TAIU",
-    "description": "select * from learn",
+    "description": "动感地带",
     "language": "zh-hans",
     "gitbook": "3.2.3",
     "styles": {
@@ -21,6 +21,9 @@
         "popup"
     ],
     "pluginsConfig": {
+        "disqus": {
+            "shortName": "realhiphop"
+        },
         "insert-logo": {
             "url": "images/微信图片_20201004195028.jpg",
             "style": "background:none;height: 80px;border-radius:10%;"
