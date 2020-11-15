@@ -18,7 +18,8 @@
         "sharing-plus",
         "anchor-navigation-ex",
         "favicon-absolute",
-        "popup"
+        "popup",
+        "disqus"
     ],
     "pluginsConfig": {
         "disqus": {
