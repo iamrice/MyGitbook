@@ -10,3 +10,7 @@ h1,h2{
 .book-logo{
 	display: flex !important;
 }
+
+.markdown-section{
+	margin-bottom: 80px !important;
+}
