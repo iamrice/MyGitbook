@@ -16,11 +16,20 @@
         "expandable-chapters-small",
         "anchors",
         "sharing-plus",
-        "favicon-absolute",
+        "favicon",
         "popup",
         "disqus"
     ],
     "pluginsConfig": {
+        "favicon": {
+            "shortcut": "images/favicon.ico",
+            "bookmark": "images/favicon.ico",
+            "appleTouch": "images/QQ图片20201112112441.png",
+            "appleTouchMore": {
+                "120x120": "images/QQ图片20201112112441.png",
+                "180x180": "images/QQ图片20201112112441.png"
+            }
+        },
         "disqus": {
             "shortName": "realhiphop"
         },
