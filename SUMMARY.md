@@ -10,6 +10,7 @@
 * [大规模优化中的资源分配 💨](PartII/大规模优化中的资源分配.md)
 * [校园二手交易网站 💨](PartII/二手交易网站.md)
 * [SysY编译系统 ✔](PartII/编译系统.md)
+* [前端项目总结 ✔](PartII/前端项目总结.md)
 * [Error Record and Solution](PartII/ErrorRecord.md)
 
 ## Part III 
