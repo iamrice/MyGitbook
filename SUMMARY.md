@@ -4,7 +4,8 @@
 
 ## projects
 
-* [Untitled](projects/)
+* [前端小程序项目](projects/前端项目总结.md)
+* [校园二手交易平台](projects/二手交易网站.md)
 
 ## work in lab
 
