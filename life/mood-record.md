@@ -48,17 +48,18 @@
 
 #### 12/19  
 **2020最受阿泰喜爱的专辑：《三只头的狗》和《演说家》**  
-<img src='../images/三只头的狗.jpg' style='width: 45%;margin:2.5%; float: left'></img>
-<img src='../images/演.说.家.jpg'/>
+<img src='../images/三只头的狗.jpg' style='width: 45%;margin:2.5%; float: left' />
+<img src='../images/演.说.家.jpg' style="width: 45%;margin:2.5%; float: left;" />
 
 **2020最受阿泰喜爱的电视剧：《想见你》**  
-<img src='../images/想见你.jpg' ></img>
+<img src='../images/想见你.jpg' style="width: 95%;margin:2.5%; float: left;" />
 
-<img src="../images/年结.jpg" style='width:50% ;margin:5% ; float: left'/>
 
 ## 2021年
 
 ### 1月
+
+<img src="../images/年结.jpg" style='width:50% ;margin:5% ; float: left'/>
 
 #### 1.2
 这图拍的真好啊，文字编辑了好久，但左思右想，还是不敢发朋友圈。我特别想做一个视频，总结自己，或是介绍自己，甚至是介绍我的家人。寒假有时间，写文稿，想镜头，找参考样例，拍视频，录音，找配乐，剪辑。have a try！
