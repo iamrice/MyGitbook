@@ -4,11 +4,19 @@
 
 ## projects
 
-* [Untitled](projects/untitled.md)
+* [Untitled](projects/)
+
+## work in lab
+
+* [大规模优化间隔问题]()
 
 ## job interview
 
-* [Untitled](job-interview/untitled.md)
+* [面试：腾讯互娱](job-interview/腾讯互娱面试.md)
+* [面试：犀牛鸟](job-interview/犀牛鸟面试.md)
+
+* [准备：JS基础](job-interview/JS基础.md)
+* [准备：计网](job-interview/计网.md)
 
 ## life
 
