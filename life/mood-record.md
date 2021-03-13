@@ -48,11 +48,11 @@
 
 #### 12/19  
 **2020最受阿泰喜爱的专辑：《三只头的狗》和《演说家》**  
-<img src='../images/三只头的狗.jpg' style='width: 45%;margin:2.5%; float: left' />
-<img src='../images/演.说.家.jpg' style="width: 45%;margin:2.5%; float: left;" />
+<img src='../images/三只头的狗.jpg' style='width: 45%;margin:2.5%; float: left'></img>
+<img src='../images/演.说.家.jpg'/>
 
 **2020最受阿泰喜爱的电视剧：《想见你》**  
-<img src='../images/想见你.jpg' style="width: 95%;margin:2.5%; float: left;" />
+<img src='../images/想见你.jpg' ></img>
 
 <img src="../images/年结.jpg" style='width:50% ;margin:5% ; float: left'/>
 
