@@ -9,7 +9,8 @@
 
 ## work in lab
 
-* [大规模优化间隔问题]()
+* [大规模优化中的资源分配](work-in-lab/大规模优化中的资源分配.md)
+* [关于演化博弈](work-in-lab/关于演化博弈.md)
 
 ## job interview
 
@@ -18,6 +19,7 @@
 
 * [准备：JS基础](job-interview/JS基础.md)
 * [准备：计网](job-interview/计网.md)
+* [准备：自我介绍](job-interview/自我介绍.md)
 
 ## life
 
