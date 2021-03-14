@@ -1,6 +1,6 @@
 # Table of contents
 
-* [welcome](README.md)
+* [Welcome](README.md)
 
 ## projects
 
