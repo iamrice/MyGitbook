@@ -4,22 +4,21 @@
 
 ## projects
 
-* [前端小程序项目](projects/前端项目总结.md)
-* [校园二手交易平台](projects/二手交易网站.md)
+* [前端小程序项目](projects/qian-duan-xiang-mu-zong-jie.md)
+* [校园二手交易平台](projects/er-shou-jiao-yi-wang-zhan.md)
 
 ## work in lab
 
-* [大规模优化中的资源分配](work-in-lab/大规模优化中的资源分配.md)
-* [关于演化博弈](work-in-lab/关于演化博弈.md)
+* [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
+* [关于演化博弈](work-in-lab/guan-yu-yan-hua-bo-yi.md)
 
 ## job interview
 
-* [面试：腾讯互娱](job-interview/腾讯互娱面试.md)
-* [面试：犀牛鸟](job-interview/犀牛鸟面试.md)
-
-* [准备：JS基础](job-interview/JS基础.md)
-* [准备：计网](job-interview/计网.md)
-* [准备：自我介绍](job-interview/自我介绍.md)
+* [面试：腾讯互娱](job-interview/teng-xun-hu-yu-mian-shi.md)
+* [面试：犀牛鸟](job-interview/xi-niu-niao-mian-shi.md)
+* [准备：JS基础](job-interview/js-ji-chu.md)
+* [准备：计网](job-interview/ji-wang.md)
+* [准备：自我介绍](job-interview/zi-wo-jie-shao.md)
 
 ## life
 
