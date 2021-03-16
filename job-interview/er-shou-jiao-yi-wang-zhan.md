@@ -4,7 +4,7 @@ description: >-
   GitHub地址：https://github.com/iamrice/CampusTradingWeb
 ---
 
-# 校园二手交易平台
+# 项目：校园二手交易平台
 
 ## 简介
 
