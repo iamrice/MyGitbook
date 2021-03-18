@@ -12,6 +12,7 @@
 * [阿泰随想录](life/mood-record.md)
 * [阿泰的运动记录](life/physical-exercise.md)
 * [实用小工具](life/shi-yong-xiao-gong-ju.md)
+* [我喜欢的音乐](life/wo-xi-huan-de-yin-le.md)
 
 ## job interview
 
