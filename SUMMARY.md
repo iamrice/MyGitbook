@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Welcome](README.md)
+* [Born to fire](README.md)
 
 ## work in lab
 

@@ -2,7 +2,7 @@
 description: 'Born to fire, 取自艾福杰尼专辑《五亿探长》。'
 ---
 
-# Welcome
+# Born to fire
 
 你好，我是阿泰，欢迎你来到我的个人博客。
 
