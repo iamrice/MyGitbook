@@ -2,17 +2,17 @@
 
 * [Born to fire](README.md)
 
-## work in lab
-
-* [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
-* [关于演化博弈](work-in-lab/guan-yu-yan-hua-bo-yi.md)
-
 ## life
 
 * [阿泰随想录](life/mood-record.md)
 * [阿泰的运动记录](life/physical-exercise.md)
 * [实用小工具](life/shi-yong-xiao-gong-ju.md)
 * [我喜欢的音乐](life/wo-xi-huan-de-yin-le.md)
+
+## work in lab
+
+* [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
+* [关于演化博弈](work-in-lab/guan-yu-yan-hua-bo-yi.md)
 
 ## job interview
 
