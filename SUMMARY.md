@@ -1,28 +1,26 @@
 # Table of contents
 
-* [Welcome](README.md)
-
-## projects
-
-* [前端小程序项目](projects/前端项目总结.md)
-* [校园二手交易平台](projects/二手交易网站.md)
+* [Born to fire](README.md)
 
 ## work in lab
 
-* [大规模优化中的资源分配](work-in-lab/大规模优化中的资源分配.md)
-* [关于演化博弈](work-in-lab/关于演化博弈.md)
-
-## job interview
-
-* [面试：腾讯互娱](job-interview/腾讯互娱面试.md)
-* [面试：犀牛鸟](job-interview/犀牛鸟面试.md)
-
-* [准备：JS基础](job-interview/JS基础.md)
-* [准备：计网](job-interview/计网.md)
-* [准备：自我介绍](job-interview/自我介绍.md)
+* [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
+* [关于演化博弈](work-in-lab/guan-yu-yan-hua-bo-yi.md)
 
 ## life
 
 * [阿泰随想录](life/mood-record.md)
 * [阿泰的运动记录](life/physical-exercise.md)
+* [实用小工具](life/shi-yong-xiao-gong-ju.md)
+* [我喜欢的音乐](life/wo-xi-huan-de-yin-le.md)
+
+## job interview
+
+* [面试：腾讯互娱](job-interview/teng-xun-hu-yu-mian-shi.md)
+* [面试：犀牛鸟](job-interview/xi-niu-niao-mian-shi.md)
+* [项目：前端小程序](job-interview/qian-duan-xiang-mu-zong-jie.md)
+* [项目：校园二手交易平台](job-interview/er-shou-jiao-yi-wang-zhan.md)
+* [准备：JS基础](job-interview/js-ji-chu.md)
+* [准备：计网](job-interview/ji-wang.md)
+* [准备：自我介绍](job-interview/zi-wo-jie-shao.md)
 
