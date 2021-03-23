@@ -12,9 +12,14 @@
 
 ## article
 
-* [无题](article/wu-ti.md)
-* [冬至随笔](article/dong-zhi-sui-bi.md)
 * [回老家](article/hui-lao-jia.md)
+* [冬至随笔](article/dong-zhi-sui-bi.md)
+* [无题](article/wu-ti.md)
+* [明天周一了](article/ming-tian-zhou-yi-le.md)
+* [我想吃冰皮月饼](article/wo-xiang-chi-bing-pi-yue-bing.md)
+* [日出和日落](article/ri-chu-he-ri-luo.md)
+* [熊猫睡不着](article/xiong-mao-shui-bu-zhe.md)
+* [物理老师X的现身](article/wu-li-lao-shixde-xian-shen.md)
 
 ## work in lab
 
