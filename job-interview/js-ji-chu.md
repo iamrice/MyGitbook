@@ -22,23 +22,23 @@
 
   =================执行上下文======================
   checkscopeContext = {
-          AO: {
-              arguments: {
-                  0:1
-                  length: 0
-              },
-              a:1,
-              scope: undefined,
-              f: reference to function f(){}
+      AO: {
+          arguments: {
+              0:1
+              length: 1
           },
-          Scope: [AO, globalContext.VO],
-          this: undefined
-      }
+          a:1,
+          scope: undefined,
+          f: reference to function f(){}
+      },
+      Scope: [AO, globalContext.VO],
+      this: undefined
+  }
   ================================================
   ```
 
 * 执行上下文的创建阶段分为三个步骤：**this绑定、创建词法环境组件、创建变量环境组件** 。
-* this一般指向全局或者被引用的对象，可以理解为上下文栈的上一个上下文。
+* this一般指向全局或者被引用的对象，~~可以理解为上下文栈的上一个上下文。~~
 * 本节参考：[https://github.com/mqyqingfeng/Blog/issues/8](https://github.com/mqyqingfeng/Blog/issues/8)
 
 ## 2. js 的变量对象：
