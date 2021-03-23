@@ -56,7 +56,7 @@
 * 函数创建时，首先复制父级的作用域链，再将自己初始化后的VO加入到作用域链中。
 * 本节参考：[https://github.com/mqyqingfeng/Blog/issues/6](https://github.com/mqyqingfeng/Blog/issues/6)
 
-## 4. 闭包：
+## 4. 闭包
 
 * 满足两个条件：即使创建它的上下文已经销毁，它依然存在（大部分情况是从函数中返回）；在代码中引用了自由变量。
 * ```javascript
@@ -78,7 +78,7 @@
 
 * 本节参考：[https://github.com/mqyqingfeng/Blog/issues/9](https://github.com/mqyqingfeng/Blog/issues/9)
 
-## 5. promise:
+## 5. promise
 
 * 首先，放一段代码，从代码中去理解这个东西
 
@@ -148,6 +148,8 @@
     return 'ok'
   }
   test().then(console.log, console.error)//ok
+  //then函数可以传入两个函数对象（注意：函数对象是不带（）的），
+  //分别对应reslove和reject。
   ```
 
 * await: 使异步函数暂停执行并等待 promise 解析传值后，继续执行异步函数并返回解析值
