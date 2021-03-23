@@ -10,6 +10,12 @@
 * [我喜欢的影视作品](life/wo-xi-huan-de-ying-shi-zuo-pin.md)
 * [我喜欢的音乐](life/wo-xi-huan-de-yin-le.md)
 
+## article
+
+* [无题](article/wu-ti.md)
+* [冬至随笔](article/dong-zhi-sui-bi.md)
+* [回老家](article/hui-lao-jia.md)
+
 ## work in lab
 
 * [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
