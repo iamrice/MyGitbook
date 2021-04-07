@@ -173,14 +173,11 @@
 ## 7. 深浅拷贝
 
 * 赋值运算符 `=` 实现的是浅拷贝，只拷贝对象的引用值；
+* 深浅拷贝只针对引用数据类型，即object，number和string属于基本数据类型
 * JavaScript 中数组和对象自带的拷贝方法都是“首层浅拷贝”；
 * `JSON.stringify` 实现的是深拷贝，但是对目标对象有要求；
 * 若想真正意义上的深拷贝，请递归。
 * 本节参考：[https://github.com/axuebin/articles/issues/20](https://github.com/axuebin/articles/issues/20)
-
-## 8. 一份学习路线
-
-![v2-06a105b6357971a34736c65a43867479\_720w](https://github.com/iamrice/MyGitbook/tree/f437d6b713cc69dd3fbc521866eec03f8f022438/job-interview/C:/Users/woshi/Desktop/娱乐图片/v2-06a105b6357971a34736c65a43867479_720w.jpg)
 
 ## 9. eventLoop
 
@@ -222,30 +219,12 @@ add(7)(1) // function
 * args=&gt;{statement}
 * \(...args\)=&gt;{console.log\(...args\)}
 
-## 12.  提纲
-
-![155de5fd3a30f0d478315f4918099230453](https://github.com/iamrice/MyGitbook/tree/f437d6b713cc69dd3fbc521866eec03f8f022438/job-interview/D:/我/gitbook/images/155de5fd3a30f0d478315f4918099230453.png)
-
 ## 13. js的变量提升
 
 * 所有的声明（function, var, let, const, class）都会被“提升”。function sayHi\(\) {} 会提升function。 var helloWorld = function\(\){} 会提升var。只有使用var关键字声明的变量才会被初始化undefined值，而let和const声明的变量则不会被初始化值，状态为uninitialized,class同理。此时称为**Temporal Dead Zone**
 * 本节参考：[https://juejin.cn/post/6844903895341219854](https://juejin.cn/post/6844903895341219854)  
 
-## 14. DOM 基本操作
-
-* 查找节点
-  * getElementById, getElementsByClassName, getElementsByTagName, getElementsByName                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-  * document/element.querySelector, document/element.querySelectorAll
-  * document.documentElement, document.body
-* 新建节点
-  * createElement
-  * createAttribute, createTextNode, createComment, createDocumentFragment
-* 添加新节点
-  * appendChild, insertBefore, setAttribute, setAttributeNode
-* 删除节点
-  * removeChild, removeAttribute, removeAttributeNode
-* 修改节点
-  * replaceChild
+## 
 
 ## 15. html标签
 
@@ -275,4 +254,105 @@ add(7)(1) // function
 * moveto, lineto, arc, arcto
 * fillStyle
 * measureText
+
+## 18. 原型链
+
+![](../.gitbook/assets/image%20%284%29.png)
+
+* \_\_proto\_\_和constructor是对象独有的
+* prototype是函数独有的
+* 函数也是对象
+* js数据类型：Number, String, Boolean, NULL, undefine, object
+* 其中，object是引用类型，常用的有Array, Function, Date
+* 下面这段代码介绍了一种继承方法，有助于原型链思考。来自：[https://www.php.cn/js-tutorial-410582.html](https://www.php.cn/js-tutorial-410582.html)
+
+```text
+function Parent() {
+    this.a = 1;
+    this.b = [1, 2, this.a];
+    this.c = { demo: 5 };
+    this.show = function () {
+        console.log(this.a , this.b , this.c.demo );
+    }
+}
+
+function Child() {
+    this.a = 2;
+    this.change = function () {
+        this.b.push(this.a);
+        this.a = this.b.length;
+        this.c.demo = this.a++;
+    }
+}
+
+Child.prototype = new Parent();
+var parent = new Parent();
+var child1 = new Child();
+var child2 = new Child();
+
+child1.a = 11;
+child2.a = 12;
+
+parent.show();
+child1.show();
+child2.show();
+
+child1.change();
+child2.change();
+
+parent.show();
+child1.show();
+child2.show();
+```
+
+## 19. js继承
+
+* 原型链继承
+
+```text
+function SuperType() {
+	this.property = true;
+}
+SuperType.prototype.getSuperValue = function() {
+	return this.property;
+};
+function SubType() {
+	this.subproperty = false;
+}
+// 继承SuperType
+SubType.prototype = new SuperType();
+```
+
+* 构造函数继承
+
+```text
+function SuperType(name) {
+  this.colors = ["red","blue","green"];
+  this.name = name;
+ }
+function SubType(name) {
+  SuperType.call(this,name);
+}
+```
+
+* 组合继承
+
+```text
+function SuperType(name){
+	this.name = name;
+	this.colors = ["red","blue","green"];
+}
+SuperType.prototype.sayName = function() {
+	console.log(this.name);
+};
+function SubType(name, age){
+	// 继承属性 第二次调用
+	SuperType.call(this, name);
+	this.age = age;
+}
+// 继承方法  第一次调用
+SubType.prototype = new SuperType();
+```
+
+
 

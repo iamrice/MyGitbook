@@ -24,6 +24,7 @@
 * [项目：前端小程序](job-interview/qian-duan-xiang-mu-zong-jie.md)
 * [项目：校园二手交易平台](job-interview/er-shou-jiao-yi-wang-zhan.md)
 * [准备：JS基础](job-interview/js-ji-chu.md)
+* [准备：浏览器](job-interview/zhun-bei-liu-lan-qi.md)
 * [准备：前端框架](job-interview/zhun-bei-qian-duan-kuang-jia.md)
 * [准备：nodejs](job-interview/zhun-bei-nodejs.md)
 * [准备：计网](job-interview/ji-wang.md)
