@@ -379,3 +379,20 @@ Function.prototype.call2 = function (context) {
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```
 
+2. 模拟实现bind  
+    \* 这操作着实让人眼前一亮，我原本一直在疑惑，函数的this指向是js内核决定的，怎么把他bind到另一个对象上呢？这一看才知道，噢！源赖氏佐田（x），原来是返回一个闭包，在闭包内使用apply方法。  
+    \*而且，有一点需要注意的是，bind函数是修改返回函数的this指向，不是对传入函数进行修改。  
+
+
+```text
+function bind2(context){
+    var func=this
+    var context=context || window
+    return function(){    
+        func.apply(context,arguments)
+    }
+}
+
+链接：https://juejin.cn/post/6844903476623835149
+```
+
