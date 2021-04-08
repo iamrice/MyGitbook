@@ -26,6 +26,8 @@
 
 ### 西虹市首富
 
+一个特别好听的单曲《我摊牌了》：[https://www.bilibili.com/video/BV1Ep4y187W7](https://www.bilibili.com/video/BV1Ep4y187W7)
+
 ### 夏洛特烦恼
 
 ### 少年的你
