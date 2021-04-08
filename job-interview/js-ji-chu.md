@@ -179,6 +179,84 @@
 * 若想真正意义上的深拷贝，请递归。
 * 本节参考：[https://github.com/axuebin/articles/issues/20](https://github.com/axuebin/articles/issues/20)
 
+## 8. 节流与防抖
+
+防抖：当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，否则将一直延时。
+
+```text
+function debounce(func,wait){
+    var timeout=null
+    return function(){
+        var context=this;
+        var args=arguments;
+        if(timeout!=null){
+            clearTimeout(timeout)
+            timeout=null;
+        }
+        
+        timeout=setTimeout(function(){
+            func.apply(context,args);
+            timeout=null;
+        },wait)       
+    }
+}
+```
+
+节流：当持续触发事件时，保证一定时间段内只调用一次事件处理函数。
+
+```text
+function throttle(func,wait){
+    var timeout=null;
+    return function(){
+        if(timeout==null)
+            timeout=setTimeOut(func,wait);
+    }
+}
+
+-------------以上是错误示范----------------
+
+function throttle(func,wait){
+    var timeout=null;
+    return function(){
+        var context=this
+        var args=arguments 
+        //用args储存的原因是，settimeout的回调函数也有arguments，优先于这一层的arguments
+        if(timeout==null){
+            timeout=setTimeout(function(){
+                func.apply(context,args);
+                timeout=null
+            },wait)
+        }
+    }
+}
+
+--------------以上是定时器版本-------------
+
+function throttle(func,wait){
+    var timeout=null;
+    var pre=Date.now()
+    return function(){
+        var context=this
+        var args=arguments
+        var remain=wait-(Date.now()-pre)
+        
+        clearTimeout(timeout)
+        
+        if(remain<=0){
+            func.apply(context,args);
+            pre=Date.now()
+        }else{
+            timeout=setTimeout(function(){
+                func.apply(context,args);
+                pre=Date.now()
+            },remain)
+        }
+    }
+}
+
+-------------以上是定时器+时间戳版本，保证了最后一次滚动能触发函数-----------
+```
+
 ## 9. eventLoop
 
 * macro-task\(宏任务\)：包括整体代码script，setTimeout，setInterval
