@@ -302,10 +302,6 @@ add(7)(1) // function
 * 所有的声明（function, var, let, const, class）都会被“提升”。function sayHi\(\) {} 会提升function。 var helloWorld = function\(\){} 会提升var。只有使用var关键字声明的变量才会被初始化undefined值，而let和const声明的变量则不会被初始化值，状态为uninitialized,class同理。此时称为**Temporal Dead Zone**
 * 本节参考：[https://juejin.cn/post/6844903895341219854](https://juejin.cn/post/6844903895341219854)  
 
-## 15. html标签
-
-* ​    div, p, h1~h5, ul, li, ol, a, img
-
 ## 16. this指向
 
 * this始终指向调用它的对象
