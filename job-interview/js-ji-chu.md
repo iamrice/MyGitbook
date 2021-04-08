@@ -173,7 +173,7 @@
 ## 7. 深浅拷贝
 
 * 赋值运算符 `=` 实现的是浅拷贝，只拷贝对象的引用值；
-* 深浅拷贝只针对引用数据类型，即object，number和string属于基本数据类型
+* 深浅拷贝只针对引用数据类型，即object和function（理论上function是原型也是object，但有的地方把function和object并列在六大基本类型中），number和string属于基本数据类型
 * JavaScript 中数组和对象自带的拷贝方法都是“首层浅拷贝”；
 * `JSON.stringify` 实现的是深拷贝，但是对目标对象有要求；
 * 若想真正意义上的深拷贝，请递归。
@@ -223,8 +223,6 @@ add(7)(1) // function
 
 * 所有的声明（function, var, let, const, class）都会被“提升”。function sayHi\(\) {} 会提升function。 var helloWorld = function\(\){} 会提升var。只有使用var关键字声明的变量才会被初始化undefined值，而let和const声明的变量则不会被初始化值，状态为uninitialized,class同理。此时称为**Temporal Dead Zone**
 * 本节参考：[https://juejin.cn/post/6844903895341219854](https://juejin.cn/post/6844903895341219854)  
-
-## 
 
 ## 15. html标签
 
@@ -355,5 +353,29 @@ function SubType(name, age){
 SubType.prototype = new SuperType();
 ```
 
+## 20. 模拟实现call, apply, bind
 
+1. 模拟实现call \* 如果call的第一个参数是null或undefine，那this指向window \* 如果call的第一个参数是Number, String, Boolean, Symbol，则this指向特定的数据对象，如Number\(0\), Boolean\(true\). 虽然这样的指定没有太大意义，但这是合法的。 \* 如果call的第一个参数是Object（包含function），则是最常见的使用场景。
+
+```text
+Function.prototype.call2 = function (context) {
+    var context = context || window;
+    context.fn = this;
+
+    var args = [];
+    for(var i = 1, len = arguments.length; i < len; i++) {
+        args.push('arguments[' + i + ']');
+    }
+
+    var result = eval('context.fn(' + args +')');
+
+    delete context.fn
+    return result;
+}
+
+作者：冴羽
+链接：https://juejin.cn/post/6844903476477034510
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
 
