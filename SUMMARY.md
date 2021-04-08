@@ -25,8 +25,8 @@
 * [项目：校园二手交易平台](job-interview/er-shou-jiao-yi-wang-zhan.md)
 * [准备：JavaScript 基础](job-interview/js-ji-chu.md)
 * [准备：CSS 基础](job-interview/zhun-bei-css-ji-chu.md)
-* [准备：浏览器](job-interview/zhun-bei-liu-lan-qi.md)
-* [准备：前端库/框架](job-interview/zhun-bei-qian-duan-kuang-jia.md)
+* [准备：前端库/框架](job-interview/zhun-bei-qian-duan-kuang-jia/README.md)
+  * [准备：浏览器](job-interview/zhun-bei-qian-duan-kuang-jia/zhun-bei-liu-lan-qi.md)
 * [准备：网络通信](job-interview/ji-wang.md)
 * [准备：自我介绍](job-interview/zi-wo-jie-shao.md)
 
