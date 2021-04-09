@@ -38,3 +38,33 @@
 4. 客户端响应 400：Bad request 403：Forbidden ****404：Not Found
 5. 服务端响应 500：Internal service error 502：Bad Gateway 503：Service Unavliable
 
+## 6. CSRF 攻击
+
+CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过引导某一网站的使用者进入第三方网站，向攻击网站发送跨站请求，利用用户已经获得的登录注册凭证，绕过后台验证，达到冒充用户对被攻击的网站执行某项操作的目的。
+
+* CSRF（通常）发生在第三方网站
+* CSRF攻击者不能获取到Cookie等信息，只是使用。
+* 防护策略
+  * 阻止不明外域的访问
+    * 同源检测 √
+    * samesite cookie
+  * 提交时附加本域才能获取的信息
+    * CSRF token
+    * 双重 cookie 验证
+
+## 7. 同源检测
+
+1. 同源：协议、域名、端口完全相同
+2. 同源策略：一种简单的防范CSRF攻击的方法，由浏览器执行，主要规则有：
+   1. 无法用js读取非同源的Cookie、LocalStorage 和 IndexDB 无法读取。 
+   2. 无法用js获取非同源的DOM。 
+   3. 无法用js发送非同源的AJAX请求 。
+
+## 8. 跨域方案
+
+1. **CORS 跨域资源共享**
+   1. 在HTTP协议中，每一个异步请求都会带上两个header，用于标记来源域名，分别是origin和referer。这个字段是由浏览器添加的，不能由前端自定义修改，这很重要。
+   2. 后端收到请求之后，对origin字段进行校验，如果后端在CORS白名单中没有找到该地址，则发送不包含Access-Control-Allow-Origin字段的响应报文，表示不允许请求资源。
+   3. 值得注意的是，这种情况下响应码仍然是200，因为服务端确实响应了报文，不过当前端识别不到Access-Control-Allow-Origin字段后，会在控制台报错。
+   4. 在阻止外域请求时，为了网页的初次展示，服务器往往会过滤掉页面请求。相应的，页面请求暴露在攻击范围内。如果使用GET请求实现产品功能，同样会受到CSRF攻击。
+
