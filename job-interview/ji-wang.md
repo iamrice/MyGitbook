@@ -47,10 +47,10 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
 * 防护策略
   * 阻止不明外域的访问
     * 同源检测 √
-    * samesite cookie
+    * samesite cookie ？
   * 提交时附加本域才能获取的信息
-    * CSRF token
-    * 双重 cookie 验证
+    * CSRF token ？
+    * 双重 cookie 验证 ？
 
 ## 7. 同源检测
 
