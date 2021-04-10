@@ -173,11 +173,99 @@
 ## 7. 深浅拷贝
 
 * 赋值运算符 `=` 实现的是浅拷贝，只拷贝对象的引用值；
-* 深浅拷贝只针对引用数据类型，即object和function（理论上function是原型也是object，但有的地方把function和object并列在六大基本类型中），number和string属于基本数据类型
+* 深浅拷贝只针对引用数据类型，即object和function（理论上function是原型也是object），number和string属于基本数据类型
 * JavaScript 中数组和对象自带的拷贝方法都是“首层浅拷贝”；
 * `JSON.stringify` 实现的是深拷贝，但是对目标对象有要求；
 * 若想真正意义上的深拷贝，请递归。
 * 本节参考：[https://github.com/axuebin/articles/issues/20](https://github.com/axuebin/articles/issues/20)
+
+```text
+//part 1: 判断对象类型
+function getType(obj){
+    return Object.prototype.toString.call(obj).slice(8,-1);
+    //返回值为形如"[object Array]"的字符串
+}
+
+//part 2: 定义不可遍历类型
+notItrType=['Number','String','Undefined','Null','Boolean','Symbol','Function']
+
+//part 3: 定义可遍历类型
+ItrType=['Array','Set','Map','Object']
+
+//part 4: 定义类型初始化
+function getInit(obj){
+    let func=obj.constructor;
+    return new func();
+}
+
+//part 5: 可遍历类型的拷贝
+function ItrClone(obj,res){
+    let type=getType(obj);
+    if(type=='Array'){
+        for(item of obj){
+            res.push(deepClone(item));
+        }
+    }
+    else if(type=='Set'){   
+        for(item of obj){
+            res.add(deepClone(item));
+        }
+    }
+    else if(type=='Map'){   
+        obj.forEach((value,key)=>{
+            res.set(key,deepClone(value));
+        });
+        //其实foreach的使用挺简单的，array和set不使用到key，所以没用这个。
+    }
+    else if(type=='Object'){
+        for(item of Object.keys(obj)){
+            res[item]=deepClone(obj[item]);
+        }
+    }
+    return res;
+}        
+
+//part 6: 拷贝函数
+function deepClone(target){
+    let type=getType(target);
+    if(notItrType.includes(type)==true){
+        return target;
+    }else if(ItrType.includes(type)==true){
+        return ItrClone(target);
+    }else{
+        //其他复杂类型，返回空
+        return null
+    }
+}
+
+//part 7: 循环引用
+refer=new Map()
+function deepClone(target){
+    let type=getType(target);
+    if(notItrType.includes(type)==true){
+        return target;
+    }else if(ItrType.includes(type)==true){
+        var res=getInit(target);
+        if(refer.get(target))
+            return refer.get(target); 
+        refer.set(target,res)        
+         
+        ItrClone(target,res);
+        return res;
+    }else{
+        //其他复杂类型，返回空
+        return null
+    }
+}
+```
+
+## 7.1 JS的四种for循环方式
+
+1. `for ... in` : 遍历对象的属性或数组的索引，如果对象的原型链上添加了新属性，那么新属性也同样会被遍历到。如果只想遍历对象本身的属性值，那么要搭配hasOwnProperty\(\)函数使用。
+2. `for ... of` : 遍历可迭代对象（不包括字典）本身的属性值。
+3. `arr.forEach(callback(value,key,arr){})` : 遍历可迭代对象本身的属性值。
+4. `for key in Object.keys(obj)`：适用于所有对象，且返回的是对象本身的属性值，但仍要搭配for ... of 使用。
+5. 参考：[https://segmentfault.com/a/1190000015619348](https://segmentfault.com/a/1190000015619348) [https://blog.csdn.net/wuyujin1997/article/details/88743955](https://blog.csdn.net/wuyujin1997/article/details/88743955)
 
 ## 8. 节流与防抖
 
@@ -334,9 +422,10 @@ add(7)(1) // function
 * \_\_proto\_\_和constructor是对象独有的
 * prototype是函数独有的
 * 函数也是对象
-* js数据类型：Number, String, Boolean, NULL, undefine, object
+* js七大数据类型：Number, String, Boolean, NULL, undefine, Symbol, object（后加入bigInt）
 * 其中，object是引用类型，常用的有Array, Function, Date
 * 下面这段代码介绍了一种继承方法，有助于原型链思考。来自：[https://www.php.cn/js-tutorial-410582.html](https://www.php.cn/js-tutorial-410582.html)
+* 值得注意的是，平常看到的Object, Array等，都是构造函数，想要设置属性，请找到他们的prototype。
 
 ```text
 function Parent() {
