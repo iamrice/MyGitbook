@@ -179,6 +179,7 @@
 * 若想真正意义上的深拷贝，请递归。
 * 本节参考：[https://github.com/axuebin/articles/issues/20](https://github.com/axuebin/articles/issues/20)
 * 以下为代码实现，参考了一篇写的非常好的文章：[https://juejin.cn/post/6844903929705136141\#heading-9](https://juejin.cn/post/6844903929705136141#heading-9)
+* 我没有实现函数的拷贝，因为我觉得不同变量引用同一个函数完全没有问题。
 
 ```text
 //part 1: 判断对象类型
