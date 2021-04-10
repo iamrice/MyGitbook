@@ -392,6 +392,10 @@ add(7)(1) // function
 * 所有的声明（function, var, let, const, class）都会被“提升”。function sayHi\(\) {} 会提升function。 var helloWorld = function\(\){} 会提升var。只有使用var关键字声明的变量才会被初始化undefined值，而let和const声明的变量则不会被初始化值，状态为uninitialized,class同理。此时称为**Temporal Dead Zone**
 * 本节参考：[https://juejin.cn/post/6844903895341219854](https://juejin.cn/post/6844903895341219854)  
 
+## 14. == 和 ===
+
+前者在比较前会强制类型转换，后者不做类型转换。后者要求比较对象的值和类型都相同，在日常使用中更受推荐。
+
 ## 16. this指向
 
 * this始终指向调用它的对象
