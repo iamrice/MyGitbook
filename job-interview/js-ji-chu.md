@@ -178,6 +178,7 @@
 * `JSON.stringify` 实现的是深拷贝，但是对目标对象有要求；
 * 若想真正意义上的深拷贝，请递归。
 * 本节参考：[https://github.com/axuebin/articles/issues/20](https://github.com/axuebin/articles/issues/20)
+* 以下为代码实现，参考了一篇写的非常好的文章：[https://juejin.cn/post/6844903929705136141\#heading-9](https://juejin.cn/post/6844903929705136141#heading-9)
 
 ```text
 //part 1: 判断对象类型
