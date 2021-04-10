@@ -362,8 +362,8 @@ function throttle(func,wait){
 * 特点：
   * 声明式编程
   * 惰性执行：函数只在需要的时候执行，即不产生无意义的中间变量。
-  * 数据不可变：它要求你所有的数据都是不可变的，这意味着如果你想修改一个对象，那你应该创建一个新的对象用来修改，而不是修改已有的对象。**没有副作用**
-  * 无状态： 主要是强调对于一个函数，不管你何时运行，它都应该像第一次运行一样，给定相同的输入，给出相同的输出，完全不依赖外部状态（例如全局变量，this 指针，IO 操作等）的变化。
+  * **数据不可变**：它要求你所有的数据都是不可变的，这意味着如果你想修改一个对象，那你应该创建一个新的对象用来修改，而不是修改已有的对象。**没有副作用**
+  * **无状态**： 主要是强调对于一个函数，不管你何时运行，它都应该像第一次运行一样，给定相同的输入，给出相同的输出，完全不依赖外部状态（例如全局变量，this 指针，IO 操作等）的变化。
   * 满足以上两点的函数称为**纯函数**
 * 柯里化curry：将一个多元函数，转换成一个依次调用的**单元函数**。在定义函数是定义一个curry对象即可。
 
@@ -378,6 +378,21 @@ add(7)(1) // function
   * curry化把要操作的数据放在最后一个参数
   * 函数组合要求函数单输入
 * 本节参考：[https://juejin.cn/post/6844903936378273799\#heading-14](https://juejin.cn/post/6844903936378273799#heading-14)
+
+```text
+//柯里化实现
+function curry(func,args=[]){
+    console.log(args)
+    if(args.length==func.length){
+        return func.apply(this,args);
+    }else{
+        return function(...paras){
+            return curry(func,args.concat(paras))
+        }
+    }
+}
+//很有趣，没有用到闭包，但用到了递归的思想
+```
 
 ## 11. 箭头函数
 
@@ -557,10 +572,19 @@ Function.prototype.call2 = function (context) {
 function bind2(context){
     var func=this
     var context=context || window
-    return function(){    
+    return function(){        
+        var args = [];
+        for(var i = 1, len = arguments.length; i < len; i++) {
+            args.push('arguments[' + i + ']');
+        }
         func.apply(context,arguments)
+        eval('func.apply(context,[' + args +'])');
     }
 }
+
+f.prototype.bind=bind2;
+
+g=f.bind(obj)
 
 链接：https://juejin.cn/post/6844903476623835149
 ```

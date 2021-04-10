@@ -40,7 +40,8 @@
 
 ## 6. CSRF 攻击
 
-CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过引导某一网站的使用者进入第三方网站，向攻击网站发送跨站请求，利用用户已经获得的登录注册凭证，绕过后台验证，达到冒充用户对被攻击的网站执行某项操作的目的。
+CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过引导某一网站的使用者进入第三方网站，向攻击网站发送跨站请求，利用用户已经获得的登录注册凭证，绕过后台验证，达到冒充用户对被攻击的网站执行某项操作的目的。  
+参考：[https://tech.meituan.com/2018/10/11/fe-security-csrf.html](https://tech.meituan.com/2018/10/11/fe-security-csrf.html)
 
 * CSRF（通常）发生在第三方网站
 * CSRF攻击者不能获取到Cookie等信息，只是使用。
@@ -75,4 +76,5 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
 
 1. Cross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。
 2. 向 DOM 注入script代码实现攻击，通常使用HTML转义解决。对于页面中所有用户输入的内容，都要进行HTML转义。
+3. 参考：[https://tech.meituan.com/2018/09/27/fe-security.html](https://tech.meituan.com/2018/09/27/fe-security.html)
 
