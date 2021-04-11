@@ -1,12 +1,35 @@
 # 准备：CSS 基础
 
-## 1. flex 弹性布局
+## 1. flex 布局
+
+### 轴向
 
 1. flex-direction: row \| row-reverse \| column \| column-reverse
-2. justify-content: flex-start \| flex-end \| center \| space-around \| space-between
-3. align-items: flex-start \| flex-end \| center \| baseline \| skretch
-4. align-content: flex-start \| flex-end \| center \| space-around \| space-between \| skretch
-5. flex-warp : warp \| nowarp \| warp-reverse
+2. flex-warp : warp \| nowarp \| warp-reverse
+
+### 对齐
+
+1. justify-content: flex-start \| flex-end \| center \| space-around 分散对齐 \| space-between 两端对齐
+2. align-items: flex-start \| flex-end \| center \| baseline \| skretch 
+
+   交叉轴只有一行元素时的对齐方式
+
+3. align-content: flex-start \| flex-end \| center \| space-around \| space-between \| skretch 交叉轴有多行元素时的对齐方式
+
+![](../.gitbook/assets/image%20%286%29.png)
+
+![](../.gitbook/assets/image%20%285%29.png)
+
+### 弹性
+
+1. flex-grow: 当容器空间剩余时，用【0，1】的取值来设置当前块相对于剩余空间的拓展比例，默认为0，即不扩充，grow为1时，将空间填满。
+2. flex-shrink：当容器空间不足时，收缩的比例。默认为1，即所有同级子元素等比收缩，shrink更大的子元素收缩更多，总之子元素的排布不会超出父元素。
+3. flex-basis：设置宽度，优先级高于width
+
+### 应用场景
+
+1. 水平垂直居中布局
+2. 让页面的header和 footer固定高度，content充满剩余空间。
 
 ## 2. BFC: 块级格式化上下文
 
@@ -27,4 +50,24 @@
 1. 应用场景一：解决父元素高度塌陷。浮动元素脱离文档流，进入浮动流（VIP），导致父元素检测不到子元素的高度，因此产生高度塌陷。
 2. 应用场景二：左右两栏自适应布局
 3. 应用场景三：上下两栏外边距重叠，为每个元素包裹一个bfc，这样他们就分属不同的bfc了
+
+## 3. display  的属性值
+
+### block
+
+1. block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。
+2. block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。
+3. block元素可以设置margin和padding属性。
+
+### inline
+
+1. inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。
+2. inline元素设置width,height属性无效。
+3. inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。
+
+### inline-block
+
+1. 多个元素在同一行排列
+2. 可设置宽高
+3. 可设置内外边距
 
