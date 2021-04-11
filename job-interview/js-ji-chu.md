@@ -133,7 +133,7 @@
 
 * 首先认识到，Promise\(\)是一个构造函数，有一个形参，接受一个函数对象。使用new Promise\(\)构造一个Promise对象。
 * 传入promise的函数一般有两个形参，分别为resolve和reject，这两个参数分别表示异步操作执行成功后的**回调函数**和异步操作执行失败后的**回调函数**。
-* Promise\(\)的原型是Promise.prototype,有then\(\), catch\(\)等函数。
+* Promise\(\)的原型是Promise.prototype,有then\(\), catch\(\),final\(\)等函数。
 * **then\(func\)**函数在runAsync这个异步任务执行完成之后被执行，这是promise结构最主要的特性。then的参数同样是一个函数，函数有一个参数，then会为其传入promiseResult。
 * catch函数即接收reject的值，也接收代码异常。
 * race函数和all函数的用法此处不详述。
@@ -168,7 +168,70 @@
   test()
   ```
 
+* await 捕捉错误
+
+```text
+function test () {
+    getJSON().then((res) => {
+      var data = JSON.parse(res) // 此处可能出错
+    }).catch((err)=>{
+    ...
+    })
+}
+
+
+async function test () {
+  try {
+    var data = JSON.parse(await getJSON())
+  } catch (e) {
+    ...
+  }
+}
+```
+
+* await 链式调用
+
+```text
+function test () {
+  var value1
+  var value2
+  return promise1()
+    .then(vle => {
+        value1 = vle
+        return promise2(value1)
+    })
+    .then(vle => {
+        value2 = vle
+        return promise3(value1, value2)
+    })
+}
+
+async function test () {
+  var value1 = await promise1()
+  var value2 = await promise2(value1)
+  return promise3(value1, value2)
+}
+```
+
+* 从上面可以看出，async和await的搭配可以大大简化代码，使得代码更加美观！
 * 本节参考：[https://objcer.com/2017/10/11/Async-Await/](https://objcer.com/2017/10/11/Async-Await/)
+
+![](../.gitbook/assets/image%20%288%29.png)
+
+## 6.5 JS 异步解决方案
+
+### 六大方法
+
+1. callback
+2. 事件监控
+3. 发布订阅
+4. promise
+5. async
+6. 生成器
+
+### insight
+
+真正让JS执行脚本不阻塞的是AJAX、setTimeout等异步方法，是他们让出主线程，等任务完成后再将回调函数加入任务队列，他们和 eventloop 共同造就了js的异步特性。而 promise 等异步方案的作用在于为这些异步方法返回的结果进行处理，如果是同步的脚本代码完全不需要promise 。
 
 ## 7. 深浅拷贝
 
@@ -350,12 +413,43 @@ function throttle(func,wait){
 ## 9. eventLoop
 
 * macro-task\(宏任务\)：包括整体代码script，setTimeout，setInterval
-* micro-task\(微任务\)：Promise，process.nextTick
+* micro-task\(微任务\)：Promise，process.nextTick\(nodejs\)，promise.then/catch/final
 * 不同类型的任务会进入对应的Event Queue，比如`setTimeout`和`setInterval`会进入相同的Event Queue。
 * 进入整体代码\(宏任务\)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。
 * 异步任务进入Event Table后会注册函数，当指定的事情完成时，Event Table会将这个函数移入Event Queue。这里的注册函数通常指回调函数，例如settimeout的第一个参数、ajax的success函数等。
 * 对于`setInterval(fn,ms)`来说，不是每过`ms`秒会执行一次`fn`，而是每过`ms`秒，会有`fn`进入Event Queue。一旦`setInterval`的回调函数`fn`执行时间超过了延迟时间`ms`，那么就完全看不出来有时间间隔了。
 * eventLoop 造就了JavaScript的异步特性。
+
+### promise 在 eventloop 中的执行
+
+* new promise\(func\) 是立即执行的，但then，catch，final都属于微任务，异步执行
+* 当promise链式调用时，从第一个then到链条完成会一并在一次eventloop中完成。
+* 思考微任务执行顺序时，心里要有一个队列，举个例子，看下面的代码，”promise1“之后，微任务队列中有一个then，紧接着“then11”，“promise2”，此时微任务加了第二个then，但当前task还没执行完，当前task跳过then之后来到了return，return之后遇到下一个then，也加入队列。随后输出“then21”，“then12”，1，“then23”
+
+```text
+new Promise((resolve,reject)=>{
+    console.log("promise1")
+    resolve()
+}).then(()=>{
+    console.log("then11")
+    new Promise((resolve,reject)=>{
+        console.log("promise2")
+        resolve()
+    }).then(()=>{
+        console.log("then21")
+    }).then(()=>{
+        console.log("then23")
+    })
+    return 1;
+}).then((i)=>{
+    console.log("then12",i)
+})
+
+作者：小美娜娜
+链接：https://juejin.cn/post/6844903808200343559
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
 
 ## 10. 函数式编程
 
