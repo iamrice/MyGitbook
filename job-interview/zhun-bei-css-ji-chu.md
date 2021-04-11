@@ -85,3 +85,25 @@
 
 ![&#x4E0A;&#x9762;&#x4E09;&#x4E2A;&#x7EA2;&#x5757;&#x5C31;&#x662F;&#x6D6E;&#x52A8;&#x6D41;](../.gitbook/assets/image%20%285%29.png)
 
+## 5. position
+
+### static
+
+默认值，元素在正常的页面流中，top等属性无效。
+
+### relative
+
+以元素的默认位置作为定位基点进行偏移。
+
+### absolute
+
+以父元素的位置作为定位基点进行偏移，如果父元素为static，则找到第一个非static的父元素。
+
+### fixed
+
+相对于视图窗口偏移。
+
+### sticky
+
+相对于视图窗口偏移，在到达定位点之前是relative，到达定位点之后是fixed。定位点为top\bottom\left\right 四者之一。
+
