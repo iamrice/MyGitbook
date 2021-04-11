@@ -34,7 +34,7 @@
 
 1. 信息响应 100：continue
 2. 成功响应 200：OK
-3. 重定向 300：multiple choice 301:   move permanently 302：found
+3. 重定向 300：multiple choice 301:   move permanently 永久性转移 302：move Temporarily 暂时性转移
 4. 客户端响应 400：Bad request 403：Forbidden ****404：Not Found
 5. 服务端响应 500：Internal service error 502：Bad Gateway 503：Service Unavliable
 
