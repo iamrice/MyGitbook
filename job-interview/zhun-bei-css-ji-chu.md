@@ -16,15 +16,17 @@
 
 3. align-content: flex-start \| flex-end \| center \| space-around \| space-between \| skretch 交叉轴有多行元素时的对齐方式
 
-![](../.gitbook/assets/image%20%286%29.png)
+![](../.gitbook/assets/image%20%287%29.png)
 
-![](../.gitbook/assets/image%20%285%29.png)
+![](../.gitbook/assets/image%20%286%29.png)
 
 ### 弹性
 
 1. flex-grow: 当容器空间剩余时，用【0，1】的取值来设置当前块相对于剩余空间的拓展比例，默认为0，即不扩充，grow为1时，将空间填满。
 2. flex-shrink：当容器空间不足时，收缩的比例。默认为1，即所有同级子元素等比收缩，shrink更大的子元素收缩更多，总之子元素的排布不会超出父元素。
 3. flex-basis：设置宽度，优先级高于width
+
+本节参考：[https://www.bilibili.com/video/BV1k441157hd](https://www.bilibili.com/video/BV1k441157hd/?spm_id_from=333.788.recommend_more_video.-1)
 
 ### 应用场景
 
@@ -51,6 +53,10 @@
 2. 应用场景二：左右两栏自适应布局
 3. 应用场景三：上下两栏外边距重叠，为每个元素包裹一个bfc，这样他们就分属不同的bfc了
 
+本节参考：[https://www.bilibili.com/video/BV16b411H7P](https://www.bilibili.com/video/BV16b411H7Pz)   
+[https://www.zhihu.com/question/35375980](https://www.zhihu.com/question/35375980)  
+[https://www.cnblogs.com/xiaohuochai/p/5248536.html](https://www.cnblogs.com/xiaohuochai/p/5248536.html)
+
 ## 3. display  的属性值
 
 ### block
@@ -70,4 +76,12 @@
 1. 多个元素在同一行排列
 2. 可设置宽高
 3. 可设置内外边距
+
+本节参考：[https://www.cnblogs.com/keithwang/p/3139517.html](https://www.cnblogs.com/keithwang/p/3139517.html)
+
+## 4. 文档流、浮动流、定位流
+
+可以认为，元素脱离文档流之后，相当于在文档流的上层进行布局，起到遮盖的效果。
+
+![&#x4E0A;&#x9762;&#x4E09;&#x4E2A;&#x7EA2;&#x5757;&#x5C31;&#x662F;&#x6D6E;&#x52A8;&#x6D41;](../.gitbook/assets/image%20%285%29.png)
 
