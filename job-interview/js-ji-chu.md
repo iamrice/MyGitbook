@@ -26,7 +26,7 @@
           arguments: {
               0:1
               length: 1
-          },
+          },//arguments是一个类数组
           a:1,
           scope: undefined,
           f: reference to function f(){}
@@ -46,7 +46,7 @@
 * 函数的所有形参、函数声明、变量声明
 * 进入执行上下文时，首先会处理函数的所有形参，其次是函数声明，最后是变量声明。
 * 如果函数名称和已存在的变量（包括参数）相同，则完全替换；
-* 如果变量名称跟已经声明的**形参或函数**相同，则变量声明不会干扰已经存在的这类属性。
+* 如果变量名称跟已经声明的**形参或函数**相同，则变量声明不会干扰已经存在的这类属性,但是我发现一个盲点，就是var 形参=value是有效的，而且不仅修改了形参，还修改了arguments。
 * 补充一点，形参是形式参数，指参数那个符号变量，实参是实际参数，指参数的实际值。
 * 本节参考：[https://github.com/mqyqingfeng/Blog/issues/5](https://github.com/mqyqingfeng/Blog/issues/5)
 
