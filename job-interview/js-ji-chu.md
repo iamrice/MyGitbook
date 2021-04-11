@@ -381,13 +381,13 @@ add(7)(1) // function
 
 ```text
 //柯里化实现
-function curry(func,args=[]){
+function curry(func,...args){
     console.log(args)
     if(args.length==func.length){
         return func.apply(this,args);
     }else{
         return function(...paras){
-            return curry(func,args.concat(paras))
+            return curry.apply(this,[func].concat(args.concat(paras)))
         }
     }
 }
@@ -572,15 +572,13 @@ Function.prototype.call2 = function (context) {
 function bind2(context){
     var func=this
     var context=context || window
-    return function(){        
+    return function(...args){        
         var args = [];
-        for(var i = 1, len = arguments.length; i < len; i++) {
-            args.push('arguments[' + i + ']');
-        }
-        func.apply(context,arguments)
-        eval('func.apply(context,[' + args +'])');
+        func.apply(context,args)
     }
 }
+//这里使用...args而不使用arguments的原因是，后者是类数组，如果想将其转为真正的数组，需要
+//Array.prototype.slice.call(arguments)
 
 f.prototype.bind=bind2;
 
