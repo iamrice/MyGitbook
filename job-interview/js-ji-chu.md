@@ -133,7 +133,7 @@
 
 * 首先认识到，Promise\(\)是一个构造函数，有一个形参，接受一个函数对象。使用new Promise\(\)构造一个Promise对象。
 * 传入promise的函数一般有两个形参，分别为resolve和reject，这两个参数分别表示异步操作执行成功后的**回调函数**和异步操作执行失败后的**回调函数**。
-* Promise\(\)的原型是Promise,有then\(\), catch\(\)等函数。
+* Promise\(\)的原型是Promise.prototype,有then\(\), catch\(\)等函数。
 * **then\(func\)**函数在runAsync这个异步任务执行完成之后被执行，这是promise结构最主要的特性。then的参数同样是一个函数，函数有一个参数，then会为其传入promiseResult。
 * catch函数即接收reject的值，也接收代码异常。
 * race函数和all函数的用法此处不详述。
@@ -355,6 +355,7 @@ function throttle(func,wait){
 * 进入整体代码\(宏任务\)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。
 * 异步任务进入Event Table后会注册函数，当指定的事情完成时，Event Table会将这个函数移入Event Queue。这里的注册函数通常指回调函数，例如settimeout的第一个参数、ajax的success函数等。
 * 对于`setInterval(fn,ms)`来说，不是每过`ms`秒会执行一次`fn`，而是每过`ms`秒，会有`fn`进入Event Queue。一旦`setInterval`的回调函数`fn`执行时间超过了延迟时间`ms`，那么就完全看不出来有时间间隔了。
+* eventLoop 造就了JavaScript的异步特性。
 
 ## 10. 函数式编程
 
