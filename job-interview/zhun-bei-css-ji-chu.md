@@ -113,13 +113,13 @@
 
 指定了元素在特定状态下激活后的样式
 
-伪类选择器属于CSS选择器，CSS选择器还包括ID选择器、属性选择器、类选择器、结构选择器、标签选择器。
+伪类选择器属于CSS选择器，CSS选择器还包括ID选择器（\#tony）、属性选择器（\[attr == value\]）、类选择器（.class）、标签选择器（ input ）、结构选择器。
 
 #### 结构选择器
 
 根据亲属关系来选择元素
 
-1. \#tony.nick tony的子孙中标签叫nick的所有元素
+1. \#tony.nick tony的子孙中叫nick的所有元素
 2. \#tony &gt; nick   tony的儿子中叫nick的元素
 3. \#tony + nick   紧挨着tony之后叫nick的元素
 
