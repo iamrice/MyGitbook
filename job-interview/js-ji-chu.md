@@ -539,10 +539,11 @@ function curry(func,...args){
 * \_\_proto\_\_和constructor是对象独有的
 * prototype是函数独有的
 * 函数也是对象
-* js七大数据类型：Number, String, Boolean, NULL, undefine, Symbol, object（后加入bigInt）
-* 其中，object是引用类型，常用的有Array, Function, Date
+* js七大数据类型：Number, String, Boolean, NULL, undefine, Symbol, Object（后加入bigInt）
+* 其中，Object是引用类型，常用的有Array, Function, Date，Set，Map
 * 下面这段代码介绍了一种继承方法，有助于原型链思考。来自：[https://www.php.cn/js-tutorial-410582.html](https://www.php.cn/js-tutorial-410582.html)
 * 值得注意的是，平常看到的Object, Array等，都是构造函数，想要设置属性，请找到他们的prototype。
+* 观察下列例子中的child函数，虽然a,b,c都有修改值，但a被修改时是this.a=2; 这个时候，child实例对象不会去原型链上找parent，而是给自己添加了a属性，而b，c被修改时都带有push或demo，不是一个声明新变量的形式，因此会去原型链上找对应属性。这就是为什么child1和child2只有a属性是不同的。
 
 ```text
 function Parent() {
@@ -571,16 +572,16 @@ var child2 = new Child();
 child1.a = 11;
 child2.a = 12;
 
-parent.show();
-child1.show();
-child2.show();
+parent.show();//1,[1,2,1],5
+child1.show();//11,[1,2,1],5
+child2.show();//12,[1,2,1],5
 
 child1.change();
 child2.change();
 
-parent.show();
-child1.show();
-child2.show();
+parent.show();//1,[1,2,1],5
+child1.show();//5,[1,2,1,11,12],5
+child2.show();//6,[1,2,1,11,12],5
 ```
 
 ## 19. js继承
