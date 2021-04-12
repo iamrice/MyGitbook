@@ -310,9 +310,10 @@ function deepClone(target){
     if(notItrType.includes(type)==true){
         return target;
     }else if(ItrType.includes(type)==true){
-        var res=getInit(target);
         if(refer.get(target))
             return refer.get(target); 
+            
+        var res=getInit(target);
         refer.set(target,res)        
          
         ItrClone(target,res);
@@ -329,7 +330,7 @@ function deepClone(target){
 1. `for ... in` : 遍历对象的属性或数组的索引，如果对象的原型链上添加了新属性，那么新属性也同样会被遍历到。如果只想遍历对象本身的属性值，那么要搭配hasOwnProperty\(\)函数使用。
 2. `for ... of` : 遍历可迭代对象（不包括字典）本身的属性值。
 3. `arr.forEach(callback(value,key,arr){})` : 遍历可迭代对象本身的属性值。
-4. `for key in Object.keys(obj)`：适用于所有对象，且返回的是对象本身的属性值，但仍要搭配for ... of 使用。
+4. `for key of Object.keys(obj)`：适用于所有对象，且返回的是对象本身的属性值，最好搭配for ... of 使用。
 5. 参考：[https://segmentfault.com/a/1190000015619348](https://segmentfault.com/a/1190000015619348) [https://blog.csdn.net/wuyujin1997/article/details/88743955](https://blog.csdn.net/wuyujin1997/article/details/88743955)
 
 ## 8. 节流与防抖
