@@ -1,4 +1,4 @@
-# 准备：前端库/框架
+# 准备：库/框架
 
 ## jQuery
 
@@ -21,4 +21,14 @@
       3. file（文件系统）
       4. net（网络系统）
       5. database（数据库）
+
+## React : 生命周期函数
+
+1. componentWillMount
+2. componentDidMount
+3. shouleComponentUpdate\(nextProps,nextState\){return boolean;}
+4. componentWillUpdate
+5. componentDidUpdate
+6. componentWillUnmount
+7.  componentWillReceiveProps
 
