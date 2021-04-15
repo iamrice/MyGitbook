@@ -78,3 +78,21 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
 2. 向 DOM 注入script代码实现攻击，通常使用HTML转义解决。对于页面中所有用户输入的内容，都要进行HTML转义。
 3. 参考：[https://tech.meituan.com/2018/09/27/fe-security.html](https://tech.meituan.com/2018/09/27/fe-security.html)
 
+## 10. HTTP 各个版本
+
+### HTTP 1.0
+
+1. 默认短连接
+2. 基于TCP
+3. 发出一个请求之后，等待响应后才能继续发送下一个请求。
+
+### HTTP 1.1
+
+1. 默认长连接
+2. 管线化技术：同一个TCP连接可同时发出多个HTTP请求，但只能按照发送顺序来接受响应，这要求服务端按顺序处理请求，按顺序返回，客户端无法识别。
+3. 一个新的http请求既可以加入tcp队列，也可以新建一个tcp连接。
+
+### HTTP2.0
+
+1. 多路复用：
+
