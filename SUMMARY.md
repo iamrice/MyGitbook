@@ -11,11 +11,6 @@
 * [我喜欢的影视作品](life/wo-xi-huan-de-ying-shi-zuo-pin.md)
 * [我喜欢的音乐](life/wo-xi-huan-de-yin-le.md)
 
-## work in lab
-
-* [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
-* [关于演化博弈](work-in-lab/guan-yu-yan-hua-bo-yi.md)
-
 ## job interview
 
 * [面试：腾讯互娱](job-interview/teng-xun-hu-yu-mian-shi.md)
@@ -30,6 +25,11 @@
 * [准备：浏览器](job-interview/zhun-bei-liu-lan-qi.md)
 * [准备：网络通信](job-interview/ji-wang.md)
 * [准备：自我介绍](job-interview/zi-wo-jie-shao.md)
+
+## work in lab
+
+* [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
+* [关于演化博弈](work-in-lab/guan-yu-yan-hua-bo-yi.md)
 
 ## article
 
