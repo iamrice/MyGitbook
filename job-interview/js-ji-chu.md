@@ -623,6 +623,21 @@ child1.show();//5,[1,2,1,11,12],5
 child2.show();//6,[1,2,1,11,12],5
 ```
 
+### instanceof
+
+```text
+function instance_of(l,r){
+    let a=l.__proto__
+    let b=r.prototype
+    while(a!=null){
+        if(a===b)
+            return true;
+        a=a.__proto__;
+    }
+    return false;
+}
+```
+
 ## 19. js继承
 
 * js没有class，只有构造函数和对象，但可以做到类似的功能，对象可储存变量和函数。
@@ -722,4 +737,6 @@ g=f.bind(obj)
 
 链接：https://juejin.cn/post/6844903476623835149
 ```
+
+
 
