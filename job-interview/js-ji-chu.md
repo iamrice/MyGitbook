@@ -497,11 +497,50 @@ function curry(func,...args){
 * \(\)=&gt;{statement};
 * args=&gt;{statement}
 * \(...args\)=&gt;{console.log\(...args\)}
+* 不绑定this和arguments
 
 ## 13. js的变量提升
 
 * 所有的声明（function, var, let, const, class）都会被“提升”。function sayHi\(\) {} 会提升function。 var helloWorld = function\(\){} 会提升var。只有使用var关键字声明的变量才会被初始化undefined值，而let和const声明的变量则不会被初始化值，状态为uninitialized,class同理。此时称为**Temporal Dead Zone**
 * 本节参考：[https://juejin.cn/post/6844903895341219854](https://juejin.cn/post/6844903895341219854)  
+* 但是，有一次面试官说只有var和function才有提升，可能是定义不一样吧。
+* 观察下列代码：
+
+```text
+// var 造成的内存泄露
+for(var i=0;i<5;i++){
+    setTimeout(()=>{
+        console.log(i);
+    },1000);
+}
+//5 5 5 5 5
+
+for(let i=0;i<5;i++){
+    setTimeout(()=>{
+        console.log(i);
+    },1000);
+}
+//0 1 2 3 4 
+```
+
+* 从作用域链的角度思考什么两段代码，第一段，var i 声明后被提升到当前上下文的变量中，因此在settimeout回调函数执行时，他们直接找到了上下文中的变量环境，因此输出是5.
+* 第二段代码中，let i 声明在for内的块级作用域中，因此回调函数在块级作用域内就找到了i，因此输出的值是遍历的值。
+* 另外，如果变量声明没有关键字，那么声明的是全局变量，即使在构造函数中，也是指向全局！
+
+## 内存泄露
+
+定义：当一个内存不再被引用，但却没有被释放时，就造成了内存泄露
+
+1. 意外的全局变量
+2. 被遗忘的计时器或回调函数
+3. 脱离DOM的引用
+4. 闭包
+
+### 垃圾回收机制
+
+JavaScript有一个引用表，记录一个内存被引用的次数，当一个变量不再被引用时，内存会被释放。
+
+
 
 ## 14. == 和 ===
 
