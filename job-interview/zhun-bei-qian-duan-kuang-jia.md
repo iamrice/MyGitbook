@@ -40,17 +40,26 @@
 
 **事件注册**
 
-**事件回调**
+React 组件的事件绑定与原生DOM 事件绑定不同，后者将事件函数绑定在DOM 结点上，而前者使用事件委托的方式，将所有事件函数绑定在document上。
 
-**事件分发**
+注册方式是在document结点上addEventListener（'click', DispathchEvent\)，dispatchEvent 是React定义的事件分配函数。
 
-1. React 组件的事件绑定与原生DOM 事件绑定不同，后者将事件函数绑定在DOM 结点上，而前者使用事件委托的方式，将所有事件函数绑定在document上。注册方式是在document结点上addEventListener（'click', DispathchEvent\)，dispatchEvent 是React定义的事件分配函数。
-2. React 有一个事件集合 listenerBank ,通过键值对的方式储存 React 元素与事件函数的对应关系。同一种事件类型的函数会被存在同一个 Bank 对象。
-3. 浏览器中，事件流程分为捕获、目标对象、冒泡三个阶段，由于dispathEvent注册时没有指定第三个参数，所以React 事件是发生在冒泡阶段的。
-4. 当事件发生时，从windows对象向下直到目标对象，再向上冒泡直到document对象这段流程中，普通的事件函数会按照原生的方式执行。随后，触发dispatchEvent 函数，此函数会完成所有 react 事件函数的执行。在这之后，事件继续冒泡，执行document、windows上绑定的事件函数。（当然，在document 上dispatchEvent 和其他事件函数的先后顺序还是要看注册的顺序，不一定谁先谁后）
-5. 在dispatchEvent 函数内部，首先他会根据nativeEvent的事件类型生成对应的合成事件，然后找到目标对象，从目标对象向父级元素逐个执行 react 事件。
+**储存事件回调函数**
 
-**为什么需要这样的机制**
+React 有一个事件集合 listenerBank ,通过键值对的方式储存 React 元素与事件函数的对应关系。同一种事件类型的函数会被存在同一个 Bank 对象。
+
+**事件分发流程**
+
+1. 触发事件，开始 DOM 事件流，先后经过三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段
+2. 当事件冒泡到 document 时，触发统一的事件分发函数 `ReactEventListener.dispatchEvent`
+3. 根据原生事件对象（nativeEvent）找到当前节点（即事件触发节点）对应的 ReactDOMComponent 对象
+4. 事件的合成
+   1. 根据当前事件类型生成对应的合成对象
+   2. 封装原生事件对象和冒泡机制
+   3. 查找当前元素以及它所有父级
+   4. 在 listenerBank 中查找事件回调函数并合成到 events 中
+5. 批量执行合成事件（events）内的回调函数
+6. 如果没有阻止冒泡，会将继续进行 DOM 事件流的冒泡（从 document 到 window），否则结束事件触发
 
 ### 生命周期函数
 
