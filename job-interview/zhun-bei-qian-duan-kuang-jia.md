@@ -61,11 +61,24 @@ React 有一个事件集合 listenerBank ,通过键值对的方式储存 React �
 5. 批量执行合成事件（events）内的回调函数
 6. 如果没有阻止冒泡，会将继续进行 DOM 事件流的冒泡（从 document 到 window），否则结束事件触发
 
+**高阶组件**
+
+一个入参和返回值为react组件的函数是高阶组件。
+
+\(占坑...\)
+
+**Hook**
+
+看到一个新颖的观点：hook 无需承担高阶组件或渲染props的负担。  
+之前也看到过：hook 能让开发者不再苦恼于 this 指向。
+
+
+
 ### 生命周期函数
 
 1. componentWillMount
 2. componentDidMount
-3. shouleComponentUpdate\(nextProps,nextState\){return boolean;}
+3. **shouleComponentUpdate\(nextProps,nextState\){return boolean;}**
 
    触发此函数有两种可能：~~父组件传递的props有变化~~，（勘误：只要父组件重新渲染，无论props是否改变，当前组件都会触发此函数），当前组件的state有变化。  
    两个参数分别指这两种情况，传入的参数是整个props和整个state。  
