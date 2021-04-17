@@ -26,7 +26,7 @@
 
 ### Component & PureComponent
 
-#### **React.PureComponent 与 React.Component 很相似。两者的区别在于 React.Component 并未实现 shouldCo**mpon**entUpdate\(\)，而 React.PureComponent 中以浅层对比 prop 和 state 的方式来实现了该函数。**
+#### **React.PureComponent 与 React.Component 很相似。两者的区别在于 React.Component 并未实现 shouldComponentUpdate\(\)，而 React.PureComponent 中以浅层对比 prop 和 state 的方式来实现了该函**数**。**
 
 虽然官网说”浅拷贝“、“忽略子组件的更新”等弊端，但我在测试中发现purecomponent好像没有这些问题，可能是因为框架更新了（？）官网说，purecomponent适合用于简单的展示组件，不适用于复杂组件。
 
@@ -122,4 +122,31 @@ setState 在事件处理函数内部是异步的，如果parent 和 child 在同
 virtual DOM 是 DOM 在内存的体现/副本，本质是JavaScript 对象。react 在一个**事件流程**后将 DOM 的修改合并在虚拟 DOM 中，通过diff 算法计算修改方案后，一次性修改到 DOM 中。虚拟 DOM 发生在渲染函数被调用和元素在屏幕上显示之间。
 
 ### diff 算法
+
+diff 和渲染函数可以说是同步进行的，一个组件如果在shouldComponentUpdate 中返回了 false ，那意味着该组件不进行渲染，也意味着不进行 diff 对比。
+
+**tree diff**
+
+只对比同一层级的元素。也就是说，通过先序遍历的方式调用 component diff。
+
+**component diff**
+
+对于一个元素，如果类型不同，则删除添加新元素，如果类型相同，则触发 shouldCompnentUpdate 。
+
+对于子元素，如果子元素没有key 属性（默认为空），则对子组件进行component diff；如果key 属性不为空，则进行element diff 。
+
+**element diff**
+
+三种操作：移动、增加、删除
+
+1. 遍历新的列表
+   1. 如果在旧列表中找到了对应的元素，对比旧列表的位置索引 index 和当前 lastindex（初始化为0）
+      1. index &gt;= lastindex，不移动，更新lastindex为index
+      2. index &lt; lastindex，将元素移动到 lastindex 的位置
+   2. 如果找不到对应元素，则在lastindex 位置添加新元素
+2. 遍历旧的列表，如果有未出现在新列表的元素，则删除。
+
+不能用index 作为 key，万万不能，后果是渲染队列基本不移动，组件状态会有错误。
+
+数组渲染要加key，否则，每个element 都要单独进行 diff。
 
