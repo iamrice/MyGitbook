@@ -25,6 +25,7 @@
 1. flex-grow: 当容器空间剩余时，用【0，1】的取值来设置当前块相对于剩余空间的拓展比例，默认为0，即不扩充，grow为1时，将空间填满。
 2. flex-shrink：当容器空间不足时，收缩的比例。默认为1，即所有同级子元素等比收缩，shrink更大的子元素收缩更多，总之子元素的排布不会超出父元素。
 3. flex-basis：设置宽度，优先级高于width
+4. flex 属性的三个值分别为 flex-grow , flex-shrink , flex-basis
 
 本节参考：[https://www.bilibili.com/video/BV1k441157hd](https://www.bilibili.com/video/BV1k441157hd/?spm_id_from=333.788.recommend_more_video.-1)
 
