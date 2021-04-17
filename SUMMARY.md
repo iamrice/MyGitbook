@@ -24,6 +24,7 @@
 * [准备：库/框架](job-interview/zhun-bei-qian-duan-kuang-jia.md)
 * [准备：浏览器](job-interview/zhun-bei-liu-lan-qi.md)
 * [准备：网络通信](job-interview/ji-wang.md)
+* [准备：综合性问题](job-interview/zhun-bei-zong-he-xing-wen-ti.md)
 * [准备：自我介绍](job-interview/zi-wo-jie-shao.md)
 
 ## work in lab

@@ -36,3 +36,16 @@
 3. 将需要多次修改的DOM设为display:none,即将其移出render tree，等修改后再加入
 4. 避免多次读取某些属性
 
+## 事件机制
+
+这个其实比较简单，三个过程：捕获、目标阶段、冒泡。
+
+stopPropagation 阻止冒泡  
+preventDefault 阻止默认事件  
+return false 阻止两者（但我在chrome的试验中，两者都没有阻止）
+
+事件回调函数：  
+element.addEventListener\('click',func,false\);  
+element.removeEventListener\('click',func,false\);  
+
+
