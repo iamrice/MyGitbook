@@ -89,8 +89,6 @@ Hook 的出现提供了一种新的解决思路，Hook 可以不使用组件来�
 
 参考：[https://blog.csdn.net/fengqiuzhihua/article/details/103511209](https://blog.csdn.net/fengqiuzhihua/article/details/103511209)
 
-
-
 ### 生命周期函数
 
 1. componentWillMount
@@ -107,10 +105,6 @@ Hook 的出现提供了一种新的解决思路，Hook 可以不使用组件来�
 6. componentWillUnmount
 7.  componentWillReceiveProps
 
-### 虚拟DOM
-
-virtual DOM 是 DOM 在内存的体现/副本，本质是JavaScript 对象。react 在一个**事件流程**后将 DOM 的修改合并在虚拟 DOM 中，通过diff 算法计算修改方案后，一次性修改到 DOM 中。虚拟 DOM 发生在渲染函数被调用和元素在屏幕上显示之间。
-
 ### 组件状态
 
 setState 在事件处理函数内部是异步的，如果parent 和 child 在同一个click事件都调用了setState，那react会在浏览器事件结束后批量更新，保证child不会被渲染两次。（注：this.state 和 this.props 都代表已经渲染了的值，因此，this.state 的更新意味着组件渲染发生。是的，即使渲染函数内部并没有用到state或props，仍然会渲染到虚拟DOM上，但经过diff算法比对后不会渲染到真实DOM上）
@@ -120,6 +114,12 @@ setState 在事件处理函数内部是异步的，如果parent 和 child 在同
 在渲染没有发生之前，使用this.state往往会得到”错误的值“，可以通过往setstate的参数传入函数解决这个问题。 
 
 总结：react 在组件渲染和真实 DOM 修改设了两道坎，降低工作量，提高效率。
+
+参考：[https://zh-hans.reactjs.org/docs/faq-state.html\#what-does-setstate-do](https://zh-hans.reactjs.org/docs/faq-state.html#what-does-setstate-do)
+
+### 虚拟DOM
+
+virtual DOM 是 DOM 在内存的体现/副本，本质是JavaScript 对象。react 在一个**事件流程**后将 DOM 的修改合并在虚拟 DOM 中，通过diff 算法计算修改方案后，一次性修改到 DOM 中。虚拟 DOM 发生在渲染函数被调用和元素在屏幕上显示之间。
 
 ### diff 算法
 
