@@ -32,11 +32,11 @@
 
 ### 事件机制
 
-（我突然意识到一个事情，其实虽说onclick是在父组件定义的，但实际上它是作为props的一部分传入组件的，就算是button，button也是一个组件）
+本节参考：[https://www.cnblogs.com/forcheng/p/13187388.htm](https://www.cnblogs.com/forcheng/p/13187388.htm)
 
 **合成事件**
 
-**React** 为了抹平不同浏览器的差异，重新封装了事件对象。因此， React 组件的事件不由浏览器调用，而是集中到React 自定义的事件分发函数中一并调用。
+React 为了抹平不同浏览器的差异，重新封装了事件对象。因此， React 组件的事件不由浏览器调用，而是集中到React 自定义的事件分发函数中一并调用。
 
 **事件注册**
 
@@ -47,6 +47,8 @@ React 组件的事件绑定与原生DOM 事件绑定不同，后者将事件函�
 **储存事件回调函数**
 
 React 有一个事件集合 listenerBank ,通过键值对的方式储存 React 元素与事件函数的对应关系。同一种事件类型的函数会被存在同一个 Bank 对象。
+
+在 初次加载渲染阶段，React 会检查每个元素的 props 上是否有事件回调，如果有，将其添加到对应的EventBank，并且在document 注册对应事件的回调。虽然dispatchEvent会被多次注册，但因为回调函数是同一个，所以实际上只会保留一个。
 
 **事件分发流程**
 
@@ -61,16 +63,31 @@ React 有一个事件集合 listenerBank ,通过键值对的方式储存 React �
 5. 批量执行合成事件（events）内的回调函数
 6. 如果没有阻止冒泡，会将继续进行 DOM 事件流的冒泡（从 document 到 window），否则结束事件触发
 
-**高阶组件**
+### **高阶组件**
 
 一个入参和返回值为react组件的函数是高阶组件。
 
-\(占坑...\)
+常用于抽离组件间共用的功能，例如获取鼠标点击坐标。高阶组件为入参的组件包裹了一层父级组件，维护可抽离的特性，在渲染阶段将 props 和 state 一并传给子组件。
 
-**Hook**
+应该还有其他功能没了解到，先占个坑。有个文章如此总结：高阶组件可用于代码重用、逻辑和引导抽象 ；渲染劫持；state 抽象和操作； props 处理
 
-看到一个新颖的观点：hook 无需承担高阶组件或渲染props的负担。  
-之前也看到过：hook 能让开发者不再苦恼于 this 指向。
+### Render props
+
+render props 同样可以用来抽离复用逻辑，但它的做法是在实例组件的渲染函数内插入抽象组件，与高阶组件恰恰相反。高阶组件是将抽象组件的状态传给实例组件，而render props是将实例组件的渲染函数传给抽象组件。
+
+当然，除了通过props 的属性传递渲染内容，也可以在抽象组件的开闭标签之间传递渲染内容，不过这需要抽象组件主动获取props.child。
+
+参考：[https://zhuanlan.zhihu.com/p/111873208](https://zhuanlan.zhihu.com/p/111873208#:~:text=%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%EF%BC%88HOC%EF%BC%89%E6%98%AF%20React%20%E4%B8%AD%E7%94%A8%E4%BA%8E%E5%A4%8D%E7%94%A8%E7%BB%84%E4%BB%B6%E9%80%BB%E8%BE%91%E7%9A%84%E4%B8%80%E7%A7%8D%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7%E3%80%82%20HOC%20%E8%87%AA%E8%BA%AB%E4%B8%8D%E6%98%AF,React%20API%20%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%8C%E5%AE%83%E6%98%AF%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8E%20React%20%E7%9A%84%E7%BB%84%E5%90%88%E7%89%B9%E6%80%A7%E8%80%8C%E5%BD%A2%E6%88%90%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%82%20%E5%8F%AF%E8%83%BD%E4%B9%8B%E5%89%8D%E6%B2%A1%E6%9C%89%E8%AF%A6%E7%BB%86%E4%BA%86%E8%A7%A3%E8%BF%87HOC%E7%9A%84%E6%9C%8B%E5%8F%8B%EF%BC%8C%E7%9C%8B%E5%88%B0%E8%BF%99%E4%B8%AA%E5%90%8D%E8%AF%8D%E4%BC%9A%E6%AF%94%E8%BE%83%E9%99%8C%E7%94%9F%EF%BC%8C%E4%BB%A5%E4%B8%BA%E8%87%AA%E5%B7%B1%E6%B2%A1%E7%94%A8%E8%BF%87%EF%BC%8C%E5%85%B6%E5%AE%9E%EF%BC%8CHOC%E6%97%A9%E5%B7%B2%E5%9C%A8%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%B9%BF%E6%B3%9B%E8%A2%AB%E7%94%A8%E5%88%B0%EF%BC%8C%E5%8F%AA%E4%B8%8D%E8%BF%87%E6%98%AF%E4%BD%A0%E6%B2%A1%E6%9C%89%E7%95%99%E5%BF%83%E6%B3%A8%E6%84%8F%E8%80%8C%E5%B7%B2%E3%80%82)
+
+### **Hook**
+
+Hook 只能用于 函数组件，其最大的优势在于代码的可复用性高。
+
+在传统的 class component 中，由于事件回调和状态必须在 class 中定义，使得代码的可复用性很低。高阶组件和 render props 可以解决此问题，他们的基本思路是将原本一个组件拆分为两个组件，一个为个性化的实例组件，另一个为共用的抽象组件，两个组件嵌套在一起可以实现完整的功能。
+
+Hook 的出现提供了一种新的解决思路，Hook 可以不使用组件来维护一个状态，这得益于 useState 和 useEffect。对于需要复用的代码逻辑，可以创建一个自定义Hook useXXX， 在函数内通过useState 创建维护一组状态，使用useEffect 设计状态的更新机制，例如添加事件监听器、跟踪异步事件的流程。
+
+参考：[https://blog.csdn.net/fengqiuzhihua/article/details/103511209](https://blog.csdn.net/fengqiuzhihua/article/details/103511209)
 
 
 
