@@ -65,11 +65,11 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
 
 1. **CORS 跨域资源共享**
    1. 在HTTP协议中，每一个异步请求都会带上两个header，用于标记来源域名，分别是origin和referer。这个字段是由浏览器添加的，不能由前端自定义修改，这很重要。
-   2. 后端收到请求之后，对origin字段进行校验，如果后端在CORS白名单中没有找到该地址，则发送不包含Access-Control-Allow-Origin字段的响应报文，表示不允许请求资源。
+   2. 后端收到请求之后，对origin字段进行校验，如果后端在CORS白名单中没有找到该地址，则发送不包含Access-Control-Allow-Origin字段的响应报文，表示不允许请求资源。如果没有使用django 等框架，那后端接口要主动判断，在响应中主动添加这一字段。
    3. 值得注意的是，这种情况下响应码仍然是200，因为服务端确实响应了报文，不过当前端识别不到Access-Control-Allow-Origin字段后，会在控制台报错。
    4. 在阻止外域请求时，为了网页的初次展示，服务器往往会过滤掉页面请求。相应的，页面请求暴露在攻击范围内。如果使用GET请求实现产品功能，同样会受到CSRF攻击。
 2. **JSONP 跨域**
-   1. 利用浏览器不限制script标签跨域请求的特性，把请求设计为script标签添加到 head 中，标签中可设置回调函数。
+   1. 利用浏览器不限制script标签跨域请求的特性，把请求设计为script标签添加到 head 中，如 `<script> function f(data){alert(data)} </script>`  `<script src='http://localhost:4000?callback=f' />` 服务端要配合这一写法，返回 f\('hello world'\) 字段，这样 script 就会执行f 函数。 当然，jquery 也对此方法进行了封装，所以可以用 ajax 来请求，把dataType 设为 ”jsonp“，使用了ajax 就可以直接在success 声明回调函数了。当然也可以用原来的方法，将jsonp 属性设为 callback，将jsonpcallback 属性设为函数名。
    2. 只能发送get请求。//个人认为，黑客无法从JSONP进行CSRF攻击。
 
 ## 9. XSS 攻击
