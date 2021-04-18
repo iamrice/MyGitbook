@@ -41,16 +41,55 @@
 * this一般指向全局或者被引用的对象，~~可以理解为上下文栈的上一个上下文。~~
 * 本节参考：[https://github.com/mqyqingfeng/Blog/issues/8](https://github.com/mqyqingfeng/Blog/issues/8)
 
-## 2. js 的变量对象：
+###  this指向
+
+* this始终指向调用它的对象
+* 在new的作用下，构造函数的this指向赋值的对象
+* call， apply：改变this指向，call有多个参数，apply只有两个参数，第二个参数为数组。
+* 箭头函数没有this，this是继承的，所以this取决于上下文中的this。
+* react中this绑定的三种方法
+  * this.func=this.func.bind\(this\) //绑定this
+  * onClick={\(\)=&gt;this.func\(\)}  //在class上下文中调用，this指向class
+  * func=\(\)=&gt;{...}  //箭头函数没有this，因此this继承了当前上下文，即class
+* 只有函数才关心this指向，因为函数是一个新的上下文。
+
+## 2. js 的变量对象
 
 * 函数的所有形参、函数声明、变量声明
 * 进入执行上下文时，首先会处理函数的所有形参，其次是函数声明，最后是变量声明。
 * 如果函数名称和已存在的变量（包括参数）相同，则完全替换；
-* 如果变量名称跟已经声明的**形参或函数**相同，则变量声明不会干扰已经存在的这类属性。举个例子，如果一个函数的参数是 a ，如果函数内声明了 var a=4;，首先在变量提升阶段，var a 不会干扰到形参，在函数执行阶段，a=4 可以成功修改形参的值。这一点表现在arguments。
+* 如果变量名称跟已经声明的**形参或函数**相同，则变量声明不会干扰已经存在的这类属性。举个例子，如果一个函数的参数是 a ，如果函数内声明了 var a=4;，首先在变量提升阶段，var a 不会干扰到形参，在函数执行阶段，a=4 可以成功修改形参的值。这一点表现在arguments（形参总是和arguments同步）。
 * 补充一点，形参是形式参数，指参数那个符号变量，实参是实际参数，指参数的实际值。
 * 本节参考：[https://github.com/mqyqingfeng/Blog/issues/5](https://github.com/mqyqingfeng/Blog/issues/5)
 
-## 3. 作用域链：
+###  js的变量提升
+
+* 所有的声明（function, var, let, const, class）都会被“提升”。function sayHi\(\) {} 会提升function。 var helloWorld = function\(\){} 会提升var。只有使用var关键字声明的变量才会被初始化undefined值。
+* 本节参考：[https://juejin.cn/post/6844903895341219854](https://juejin.cn/post/6844903895341219854)  
+* 观察下列代码：
+
+```text
+// var 造成的内存泄露
+for(var i=0;i<5;i++){
+    setTimeout(()=>{
+        console.log(i);
+    },1000);
+}
+//5 5 5 5 5
+
+for(let i=0;i<5;i++){
+    setTimeout(()=>{
+        console.log(i);
+    },1000);
+}
+//0 1 2 3 4 
+```
+
+* 从作用域链的角度思考什么两段代码，第一段，var i 声明后被提升到当前上下文的变量中，因此在settimeout回调函数执行时，他们直接找到了上下文中的变量环境，因此输出是5.
+* 第二段代码中，let i 声明在for内的块级作用域中，因此回调函数在块级作用域内就找到了i，因此输出的值是遍历的值。
+* 另外，如果变量声明没有关键字，那么声明的是全局变量，即使在构造函数中，也是指向全局！
+
+## 3. 作用域链
 
 * 当查找变量的时候，会先从**当前上下文的变量对象**中查找，如果没有找到，就会从父级**（词法层面上的父级）**\)执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做作用域链。
 * 函数创建时，首先复制父级的作用域链，再将自己初始化后的VO加入到作用域链中。
@@ -76,9 +115,24 @@
 
   闭包总是可以获取到作用域链上自由变量的值。
 
-* 本节参考：[https://github.com/mqyqingfeng/Blog/issues/9](https://github.com/mqyqingfeng/Blog/issues/9)
+* 本节参考：[https://github.com/mqyqingfeng/Blog/issues/9](https://github.com/mqyqingfeng/Blog/issues/9)5. 
 
-## 5. promise
+## 5. JS 异步解决方案
+
+### **六大方法**
+
+1. callback
+2. 事件监控
+3. 发布订阅
+4. promise
+5. async
+6. 生成器
+
+### **insight**
+
+真正让JS执行脚本不阻塞的是AJAX、setTimeout等异步方法，是他们让出主线程，等任务完成后再将回调函数加入任务队列，他们和 eventloop 共同造就了js的异步特性。而 promise 等异步方案的作用在于为这些异步方法返回的结果进行处理，如果是同步的脚本代码完全不需要promise 。
+
+### promise
 
 * 首先，放一段代码，从代码中去理解这个东西
 
@@ -139,7 +193,7 @@
 * race函数和all函数的用法此处不详述。
 * 本节参考：[https://www.cnblogs.com/lvdabao/p/es6-promise-1.html](https://www.cnblogs.com/lvdabao/p/es6-promise-1.html)
 
-## 6. async
+### async
 
 * 调用异步函数时会返回一个 promise 对象。
 
@@ -217,21 +271,6 @@ async function test () {
 * 本节参考：[https://objcer.com/2017/10/11/Async-Await/](https://objcer.com/2017/10/11/Async-Await/)
 
 ![](../.gitbook/assets/image%20%288%29.png)
-
-## 6.5 JS 异步解决方案
-
-### 六大方法
-
-1. callback
-2. 事件监控
-3. 发布订阅
-4. promise
-5. async
-6. 生成器
-
-### insight
-
-真正让JS执行脚本不阻塞的是AJAX、setTimeout等异步方法，是他们让出主线程，等任务完成后再将回调函数加入任务队列，他们和 eventloop 共同造就了js的异步特性。而 promise 等异步方案的作用在于为这些异步方法返回的结果进行处理，如果是同步的脚本代码完全不需要promise 。
 
 ## 7. 深浅拷贝
 
@@ -325,7 +364,7 @@ function deepClone(target){
 }
 ```
 
-## 7.1 JS的四种for循环方式
+### JS的四种for循环方式
 
 1. `for ... in` : 遍历对象的属性或数组的索引，如果对象的原型链上添加了新属性，那么新属性也同样会被遍历到。如果只想遍历对象本身的属性值，那么要搭配hasOwnProperty\(\)函数使用。
 2. `for ... of` : 遍历可迭代对象（不包括字典）本身的属性值。
@@ -354,6 +393,7 @@ function debounce(func,wait){
         },wait)       
     }
 }
+//注意 this 指向的问题，凡是对函数进行封装的操作，都要注意还原其 this 指向
 ```
 
 节流：当持续触发事件时，保证一定时间段内只调用一次事件处理函数。
@@ -499,35 +539,7 @@ function curry(func,...args){
 * \(...args\)=&gt;{console.log\(...args\)}
 * 不绑定this和arguments
 
-## 13. js的变量提升
-
-* 所有的声明（function, var, let, const, class）都会被“提升”。function sayHi\(\) {} 会提升function。 var helloWorld = function\(\){} 会提升var。只有使用var关键字声明的变量才会被初始化undefined值，而let和const声明的变量则不会被初始化值，状态为uninitialized,class同理。此时称为**Temporal Dead Zone**
-* 本节参考：[https://juejin.cn/post/6844903895341219854](https://juejin.cn/post/6844903895341219854)  
-* 但是，有一次面试官说只有var和function才有提升，可能是定义不一样吧。
-* 观察下列代码：
-
-```text
-// var 造成的内存泄露
-for(var i=0;i<5;i++){
-    setTimeout(()=>{
-        console.log(i);
-    },1000);
-}
-//5 5 5 5 5
-
-for(let i=0;i<5;i++){
-    setTimeout(()=>{
-        console.log(i);
-    },1000);
-}
-//0 1 2 3 4 
-```
-
-* 从作用域链的角度思考什么两段代码，第一段，var i 声明后被提升到当前上下文的变量中，因此在settimeout回调函数执行时，他们直接找到了上下文中的变量环境，因此输出是5.
-* 第二段代码中，let i 声明在for内的块级作用域中，因此回调函数在块级作用域内就找到了i，因此输出的值是遍历的值。
-* 另外，如果变量声明没有关键字，那么声明的是全局变量，即使在构造函数中，也是指向全局！
-
-## 内存泄露
+## 12. 内存泄露
 
 定义：当一个内存不再被引用，但却没有被释放时，就造成了内存泄露
 
@@ -542,36 +554,11 @@ JavaScript有一个引用表，记录一个内存被引用的次数，当一个�
 
 
 
-## 14. == 和 ===
+## 13. == 和 ===
 
 前者在比较前会强制类型转换，后者不做类型转换。后者要求比较对象的值和类型都相同，在日常使用中更受推荐。
 
-## 16. this指向
-
-* this始终指向调用它的对象
-* 在new的作用下，构造函数的this指向赋值的对象
-* call， apply：改变this指向，call有多个参数，apply只有两个参数，第二个参数为数组。
-* 箭头函数没有this，this是继承的，所以this取决于上下文中的this。
-* react中this绑定的三种方法
-  * this.func=this.func.bind\(this\) //绑定this
-  * onClick={\(\)=&gt;this.func\(\)}  //在class上下文中调用，this指向class
-  * func=\(\)=&gt;{...}  //箭头函数没有this，因此this继承了当前上下文，即class
-* 只有函数才关心this指向，因为函数是一个新的上下文。
-
-## 17. canvas
-
-* ```text
-  var canvas = document.getElementById('canvas');
-  var ctx = canvas.getContext('2d');
-  ```
-* fillrect, stokerect, clearrect
-* beginpath, closepath,
-* stroke, fill,
-* moveto, lineto, arc, arcto
-* fillStyle
-* measureText
-
-## 18. 原型链
+## 14. 原型链
 
 ![](../.gitbook/assets/image%20%284%29.png)
 
@@ -629,7 +616,7 @@ child2.show();//6,[1,2,1,11,12],5
 function instance_of(l,r){
     let a=l.__proto__
     let b=r.prototype
-    while(a!=null){
+    while(a!==null){
         if(a===b)
             return true;
         a=a.__proto__;
@@ -638,7 +625,7 @@ function instance_of(l,r){
 }
 ```
 
-## 19. js继承
+### js继承
 
 * js没有class，只有构造函数和对象，但可以做到类似的功能，对象可储存变量和函数。
 * 原型链继承 注：prototype 不能直接指向 SuperType.prototype，当子类有添加方法时，这样写会直接改变父类的方法。所以一般指向一个实例。
