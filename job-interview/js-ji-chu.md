@@ -703,7 +703,7 @@ Function.prototype.call2 = function (context) {
     }
 
     var result = eval('context.fn(' + args +')');
-
+    // 如果是ES6，可以使用...arguments 来传参
     delete context.fn
     return result;
 }
