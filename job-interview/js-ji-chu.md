@@ -723,8 +723,7 @@ Function.prototype.call2 = function (context) {
 function bind2(context){
     var func=this
     var context=context || window
-    return function(...args){        
-        var args = [];
+    return function(...args){
         func.apply(context,args)
     }
 }
@@ -736,6 +735,23 @@ f.prototype.bind=bind2;
 g=f.bind(obj)
 
 链接：https://juejin.cn/post/6844903476623835149
+```
+
+```text
+------------------可 new 可继承的 bind --------------
+Function.prototype.bind =function(context){
+    var func=this
+    var context=context || window
+    var res= function(...args){
+        if(this instanceof res){
+            func.apply(this,args)
+        }else{
+            func.apply(context,args)
+        }
+    }
+    res.prototype=func.prototype
+    return res;
+}
 ```
 
 
