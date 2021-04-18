@@ -69,10 +69,22 @@ function B(){
     A.call(this);
     this.c=5;
 }
-B.prototype=A.prototype
+B.prototype=new A()
 
 B.prototype.func1=function(){
     console.log(this.constructor.a,this.b,this.c)
 }
 ```
+
+### ES6 新特性
+
+1. let、const：块级作用域
+2. 模板字符串：“this is ${name} ."
+3. 箭头函数
+4. 函数默认值
+5. spread/Rest：...array
+6. 二进制和八进制
+7. 对象和数组解构：\[a,b,c\]=array、{a,b,c}=object
+8. for of 遍历迭代器, for in 遍历对象和数组
+9. 类：语法糖
 

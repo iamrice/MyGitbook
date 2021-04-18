@@ -641,7 +641,7 @@ function instance_of(l,r){
 ## 19. js继承
 
 * js没有class，只有构造函数和对象，但可以做到类似的功能，对象可储存变量和函数。
-* 原型链继承
+* 原型链继承 注：prototype 不能直接指向 SuperType.prototype，当子类有添加方法时，这样写会直接改变父类的方法。所以一般指向一个实例。
 
 ```text
 function SuperType() {
