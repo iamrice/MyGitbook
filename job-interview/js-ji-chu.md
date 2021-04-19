@@ -132,6 +132,15 @@ for(let i=0;i<5;i++){
 
 真正让JS执行脚本不阻塞的是AJAX、setTimeout等异步方法，是他们让出主线程，等任务完成后再将回调函数加入任务队列，他们和 eventloop 共同造就了js的异步特性。而 promise 等异步方案的作用在于为这些异步方法返回的结果进行处理，如果是同步的脚本代码完全不需要promise 。
 
+### 事件监控 & 发布订阅
+
+这两者比较类似，在事件完成后使用 trigger 触发信号，然后回调函数执行。  
+事件监控是将事件绑定在函数上，如 `f1.on('done',f2)`; 发布订阅是在全局定义一个信号中心，函数可以去订阅信号，也可以向中心发送信号。如 `jQuery.subscribe('done',f2) ; jQuery.publish('done') ;`
+
+### generator
+
+函数内使用 yield 关键字暂停，函数调用时使用 next 函数逐步执行。（感觉不实用呀）
+
 ### promise
 
 * 首先，放一段代码，从代码中去理解这个东西
@@ -268,7 +277,7 @@ async function test () {
 ```
 
 * 从上面可以看出，async和await的搭配可以大大简化代码，使得代码更加美观！
-* 本节参考：[https://objcer.com/2017/10/11/Async-Await/](https://objcer.com/2017/10/11/Async-Await/)
+* 本节参考：[https://objcer.com/2017/10/11/Async-Await/](https://objcer.com/2017/10/11/Async-Await/) [https://zhuanlan.zhihu.com/p/138476325](https://zhuanlan.zhihu.com/p/138476325)
 
 ![](../.gitbook/assets/image%20%288%29.png)
 
