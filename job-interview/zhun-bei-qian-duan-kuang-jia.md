@@ -98,7 +98,7 @@ Hook 的出现提供了一种新的解决思路，Hook 可以不使用组件来�
    触发此函数有两种可能：~~父组件传递的props有变化~~，（勘误：只要父组件重新渲染，无论props是否改变，当前组件都会触发此函数），当前组件的state有变化。  
    两个参数分别指这两种情况，传入的参数是整个props和整个state。  
    如果返回true，则更新数据并重新渲染到虚拟 DOM 上  
-   如果返回false，不更新数据，不渲染。当父组件props没有改变时，应该返回false，此处涉及到浅对比和深对比。因为react没有帮忙做这个对比，所以我认为最后是做个深层比较吧。
+   如果返回false，不更新数据，不渲染。当父组件props没有改变时，应该返回false，此处涉及到浅对比和深对比。因为react没有帮忙做这个对比，所以我认为最好是做个深层比较吧。
 
 4. componentWillUpdate
 5. componentDidUpdate
@@ -127,11 +127,13 @@ diff 和渲染函数可以说是同步进行的，一个组件如果在shouldCom
 
 **tree diff**
 
-只对比同一层级的元素。也就是说，通过先序遍历的方式调用 component diff。
+只对比同一层级的元素。也就是说，通过先序遍历的方式调用 component diff。  
+之所以在将 tree diff 作为三大组成之一，是因为，每一个 react  元素都会生成一个树状结构，可能不止一层，这些子节点中，有的是html 元素，可以直接对比，有的是 react 元素，调用 component diff 对其对比。
 
 **component diff**
 
-对于一个元素，如果类型不同，则删除添加新元素，如果类型相同，则触发 shouldCompnentUpdate 。
+对于一个元素，（猜想）如果是基础元素，那直接比较innerHtml。  
+如果是 react 元素：如果类型不同，则删除添加新元素，如果类型相同，则触发 shouldCompnentUpdate 。
 
 对于子元素，如果子元素没有key 属性（默认为空），则对子组件进行component diff；如果key 属性不为空，则进行element diff 。
 
