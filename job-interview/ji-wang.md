@@ -26,7 +26,51 @@
 4. 颁发数字证书解决公钥的信任问题，客户端可以验证服务端的数字证书的真实性，如果是真实的，使用该公钥加密对称加密密钥，发给服务端，服务端使用私钥解密，即可完成公钥协商。如果没有证书，那么黑客有可能伪装成服务端发给用户一个公钥，从而与客户端达成连接。黑客的目的就是作为转发站插在客户端和服务端通信的中间。
 5. 参考：[https://www.cnblogs.com/cxuanBlog/p/12490862.html](https://www.cnblogs.com/cxuanBlog/p/12490862.html) [https://blog.csdn.net/qq\_38289815/article/details/107591115](https://blog.csdn.net/qq_38289815/article/details/107591115)
 
-## 4. GET 和 POST 的区别
+## 4. HTTP 请求
+
+### AJAX 
+
+ajax 是异步http 请求，它的核心是 JavaScript 的 XMLHttpRequest 对象。
+
+```text
+function ajax(options){
+    let method,url,datatype,async,data;
+    ...//从 options 中获取 ajax 的参数
+ 
+    return new Promise(function(reslove,reject){
+       const xhr=new XMLHttpRequest();
+       //set properties of request object
+       xhr.ontimeout=()=>{}
+       xhr.onstatereadychange=()=>{
+          ...
+          if(readyState===4 && ((status>=200 && status<300) || status==304)){
+             reslove(xhr.response)
+          }else{
+             reject()
+          }
+       }
+       xhr.onerror=(err)=>{
+          ...
+          reject(err)
+       }
+       
+       encodedata=()=>{
+          list=[]
+       
+       if(method==='GET'){
+          //process url
+       }
+       xhr.open(url,method,async);
+       if(method=='GET'){
+          xhr.send(null);
+       }else if(method=='POST'){
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+          xhr.send(data)
+       }
+    })
+```
+
+### GET 和 POST 的区别
 
 1. 参考：99%的人都理解错了 HTTP 中 GET 与 POST 的区别  [https://learnku.com/articles/25881](https://learnku.com/articles/25881)
 2. 这个文章揭开了 HTTP 请求类型的本质，但我还没打算细看。
@@ -35,7 +79,7 @@
 
 1. 信息响应 100：continue
 2. 成功响应 200：OK
-3. 重定向 300：multiple choice 301:   move permanently 永久性转移 302：move Temporarily 暂时性转移
+3. 重定向 300：multiple choice 301:   move permanently 永久性转移 302：move Temporarily 暂时性转移 304：未修改。自从上次请求至今资源没有变动（客户端上传last modified time），不返回内容。
 4. 客户端响应 400：Bad request 403：Forbidden ****404：Not Found
 5. 服务端响应 500：Internal service error 502：Bad Gateway 503：Service Unavliable
 
@@ -67,7 +111,7 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
 1. **CORS 跨域资源共享**
    1. 在HTTP协议中，每一个异步请求都会带上两个header，用于标记来源域名，分别是origin和referer。这个字段是由浏览器添加的，不能由前端自定义修改，这很重要。
    2. 后端收到请求之后，对origin字段进行校验，如果后端在CORS白名单中没有找到该地址，则发送不包含Access-Control-Allow-Origin字段的响应报文，表示不允许请求资源。如果没有使用django 等框架，那后端接口要主动判断，在响应中主动添加这一字段。
-   3. 值得注意的是，这种情况下响应码仍然是200，因为服务端确实响应了报文，不过当前端识别不到Access-Control-Allow-Origin字段后，会在控制台报错。
+   3. 值得注意的是，这种情况下响应码仍然是200，因为服务端确实响应了报文，不过当前端识别不到Access-Control-Allow-Origin字段后，会在控制台报错。这种情况下，即使服务端返回body 中带有内容，前端也不会解析。 我在实验中发现，如果服务端返回的 ACAO 字段有两个或以上 ip，前端同样会报错。因此，CORS跨域要求服务端返回字段，该字段明确指向请求方的origin 地址（需要带有https://），或是\*
    4. 在阻止外域请求时，为了网页的初次展示，服务器往往会过滤掉页面请求。相应的，页面请求暴露在攻击范围内。如果使用GET请求实现产品功能，同样会受到CSRF攻击。
 2. **JSONP 跨域**
    1. 利用浏览器不限制script标签跨域请求的特性，把请求设计为script标签添加到 head 中，如 `<script> function f(data){alert(data)} </script>`  `<script src='http://localhost:4000?callback=f' />` 服务端要配合这一写法，返回 f\('hello world'\) 字段，这样 script 就会执行f 函数。 当然，jquery 也对此方法进行了封装，所以可以用 ajax 来请求，把dataType 设为 ”jsonp“，使用了ajax 就可以直接在success 声明回调函数了。当然也可以用原来的方法，将jsonp 属性设为 callback，将jsonpcallback 属性设为函数名。

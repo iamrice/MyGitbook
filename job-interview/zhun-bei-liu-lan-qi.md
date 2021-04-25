@@ -46,6 +46,16 @@ return false 阻止两者（但我在chrome的试验中，两者都没有阻止�
 
 事件回调函数：  
 element.addEventListener\('click',func,false\);  
-element.removeEventListener\('click',func,false\);  
+element.removeEventListener\('click',func,false\);
+
+## HTTP 缓存
+
+http 缓存主要分为强缓存和协商缓存，二者是可以共同存在的。
+
+强缓存是指服务端对一个资源设定过期时间，客户端根据过期时间判断再次加载时是否向服务端发出请求。强缓存设计的参数有 cache-control，expires，二者的主要区别是时间的表达方式，前者设置的是资源寿命长度，后者设置的是资源过期时间。后者在前后端时间不统一的情况下会出现不符合预期的情况。
+
+**cache-control :** max-age=，no-cache,no-store,private/public,
+
+  
 
 
