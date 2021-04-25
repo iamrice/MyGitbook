@@ -88,3 +88,7 @@ B.prototype.func1=function(){
 8. for of 遍历迭代器, for in 遍历对象和数组
 9. 类：语法糖
 
+### reduce 方法
+
+和 map 相对于，reduce 用于归并数组内容，应用场景很广泛。核心功能在于，reduce 在遍历一个数组的过程中，能够把上一次迭代时 return 的内容传递到下一次迭代中，以实现归并的功能。reduce 方法的第一个参数是回调函数，接受四个参数：prev、curv、index、arr，第二个参数是 initial value ，作为第一个位置的 prev 参数，有设置initial value 比较合理，否则则跳过第一个位置的回调执行。
+
