@@ -90,7 +90,9 @@ function ajax(options){
 4. 客户端响应 400：Bad request 403：Forbidden ****404：Not Found
 5. 服务端响应 500：Internal service error 502：Bad Gateway 503：Service Unavliable
 
-## 6. CSRF 攻击
+## 6. 网络安全
+
+### CSRF 攻击
 
 CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过引导某一网站的使用者进入第三方网站，向攻击网站发送跨站请求，利用用户已经获得的登录注册凭证，绕过后台验证，达到冒充用户对被攻击的网站执行某项操作的目的。  
 参考：[https://tech.meituan.com/2018/10/11/fe-security-csrf.html](https://tech.meituan.com/2018/10/11/fe-security-csrf.html)
@@ -105,15 +107,21 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
     * CSRF token ？
     * 双重 cookie 验证 ？
 
-## 7. 同源检测
+### XSS 攻击
+
+1. Cross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。
+2. 向 DOM 注入script代码实现攻击，通常使用HTML转义解决。对于页面中所有用户输入的内容，都要进行HTML转义。
+3. 参考：[https://tech.meituan.com/2018/09/27/fe-security.html](https://tech.meituan.com/2018/09/27/fe-security.html)
+
+## 8. 跨域方案
+
+### 同源检测
 
 1. 同源：协议、域名、端口完全相同
 2. 同源策略：一种简单的防范CSRF攻击的方法，由浏览器执行，主要规则有：
    1. 无法用js读取非同源的Cookie、LocalStorage 和 IndexDB 无法读取。 
    2. 无法用js获取非同源的DOM。 
    3. 无法用js发送非同源的AJAX请求 。
-
-## 8. 跨域方案
 
 ### 同源策略限制下 http 请求的正确打开方式
 
@@ -136,13 +144,7 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
 1. iframe + domain
 2. postMessage
 
-## 9. XSS 攻击
-
-1. Cross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。
-2. 向 DOM 注入script代码实现攻击，通常使用HTML转义解决。对于页面中所有用户输入的内容，都要进行HTML转义。
-3. 参考：[https://tech.meituan.com/2018/09/27/fe-security.html](https://tech.meituan.com/2018/09/27/fe-security.html)
-
-## 10. HTTP 各个版本
+## HTTP 各个版本
 
 ### HTTP 1.0
 
