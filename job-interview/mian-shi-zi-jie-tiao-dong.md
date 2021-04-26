@@ -21,7 +21,9 @@
    我猜，面试官把这两个放在一起，其实是想考察我知不知道把用户的密码缓存起来。来提示了那么多，可惜，我确实没这么做过，所以也不好说，不然一深入就完蛋了。
 
 6. map 和 foreach 的区别：map 有返回值
-7. 识别url 参数
+7. 数组的方法：map, filter, reduce, foreach, slice, join, concat, includes, indexOf
+8. String 的方法：split, match, slice
+9. 识别url 参数
 
    我在面试时是暴力分割。先用？分开路经和参数，然后用&分开参数，然后用=分开参数名和值，太不优雅了。
 
