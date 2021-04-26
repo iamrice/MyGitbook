@@ -54,11 +54,14 @@ function ajax(options){
           reject(err)
        }
        
-       encodedata=()=>{
-          list=[]
+       keys=Object.keys(data)
+       list=keys.map((key)=>{
+          return key+'='+data[key]
+       })
+       encodeData=list.join('&')
        
        if(method==='GET'){
-          //process url
+          //add data at the end of url
        }
        xhr.open(url,method,async);
        if(method=='GET'){
@@ -75,10 +78,14 @@ function ajax(options){
 1. 参考：99%的人都理解错了 HTTP 中 GET 与 POST 的区别  [https://learnku.com/articles/25881](https://learnku.com/articles/25881)
 2. 这个文章揭开了 HTTP 请求类型的本质，但我还没打算细看。
 
-## 5. HTTP 响应码
+### 响应码
 
 1. 信息响应 100：continue
-2. 成功响应 200：OK
+2. 成功响应  
+   200：OK
+
+   204：OK 且无响应内容
+
 3. 重定向 300：multiple choice 301:   move permanently 永久性转移 302：move Temporarily 暂时性转移 304：未修改。自从上次请求至今资源没有变动（客户端上传last modified time），不返回内容。
 4. 客户端响应 400：Bad request 403：Forbidden ****404：Not Found
 5. 服务端响应 500：Internal service error 502：Bad Gateway 503：Service Unavliable
@@ -108,14 +115,26 @@ CSRF（cross site request forgery）跨站请求伪造攻击。攻击者通过�
 
 ## 8. 跨域方案
 
+### 同源策略限制下 http 请求的正确打开方式
+
 1. **CORS 跨域资源共享**
    1. 在HTTP协议中，每一个异步请求都会带上两个header，用于标记来源域名，分别是origin和referer。这个字段是由浏览器添加的，不能由前端自定义修改，这很重要。
    2. 后端收到请求之后，对origin字段进行校验，如果后端在CORS白名单中没有找到该地址，则发送不包含Access-Control-Allow-Origin字段的响应报文，表示不允许请求资源。如果没有使用django 等框架，那后端接口要主动判断，在响应中主动添加这一字段。
    3. 值得注意的是，这种情况下响应码仍然是200，因为服务端确实响应了报文，不过当前端识别不到Access-Control-Allow-Origin字段后，会在控制台报错。这种情况下，即使服务端返回body 中带有内容，前端也不会解析。 我在实验中发现，如果服务端返回的 ACAO 字段有两个或以上 ip，前端同样会报错。因此，CORS跨域要求服务端返回字段，该字段明确指向请求方的origin 地址（需要带有https://），或是\*
-   4. 在阻止外域请求时，为了网页的初次展示，服务器往往会过滤掉页面请求。相应的，页面请求暴露在攻击范围内。如果使用GET请求实现产品功能，同样会受到CSRF攻击。
+   4. 在阻止外域请求时，为了网页的初次展示，服务器往往会过滤掉页面请求。相应的，页面请求暴露在攻击范围内。如果使用GET请求实现产品功能，同样会受到CSRF攻击。（存疑）
+   5. 对于简单请求，只需要在请求时附上origin、referer等字段；对于复杂请求，则需要先发送一个预请求，服务端返回access-control-allow-xxx 字段，并设置max-age ，在这段时间内都不需要预请求。[http://www.ruanyifeng.com/blog/2016/04/cors.html](http://www.ruanyifeng.com/blog/2016/04/cors.html)
 2. **JSONP 跨域**
    1. 利用浏览器不限制script标签跨域请求的特性，把请求设计为script标签添加到 head 中，如 `<script> function f(data){alert(data)} </script>`  `<script src='http://localhost:4000?callback=f' />` 服务端要配合这一写法，返回 f\('hello world'\) 字段，这样 script 就会执行f 函数。 当然，jquery 也对此方法进行了封装，所以可以用 ajax 来请求，把dataType 设为 ”jsonp“，使用了ajax 就可以直接在success 声明回调函数了。当然也可以用原来的方法，将jsonp 属性设为 callback，将jsonpcallback 属性设为函数名。
    2. 只能发送get请求。//个人认为，黑客无法从JSONP进行CSRF攻击。
+   3. JSONP 是可以在 JavaScript 中封装为一个方法的，像ajax 就有method ：jsonp。封装的大致思路是，create element &lt;script&gt;，设置元素的 src；在方法内设置回调函数 callback，并将其绑定在window 对象下。ajax 是使用promise 写的，所以可以将获取到的data 通过resolve 传递出来，并且在回调之后，将script 标签删除，将回调删除，这是因为http 请求是一次性的。
+   4. 参考：[https://segmentfault.com/a/1190000015597029](https://segmentfault.com/a/1190000015597029) 
+3. **空 iframe 加 form**
+   1. 据我实验，这个方法的思路是，用form 发送post 请求，但是form 元素在提交表单时会跳转到 action 属性指定的页面，并且提交post 请求。如果将form 元素加在 iframe 元素内部，就不会发生跳转，或者说，跳转发生在iframe 内部，不影响全局页面，只需要将iframe 设为 display：none就可以了。
+
+### 同源策略限制下 DOM 访问的正确打开方式（没搞懂）
+
+1. iframe + domain
+2. postMessage
 
 ## 9. XSS 攻击
 
