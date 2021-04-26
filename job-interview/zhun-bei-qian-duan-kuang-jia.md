@@ -53,7 +53,7 @@ React 有一个事件集合 listenerBank ,通过键值对的方式储存 React �
 **事件分发流程**
 
 1. 触发事件，开始 DOM 事件流，先后经过三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段
-2. 当事件冒泡到 document 时，触发统一的事件分发函数 `ReactEventListener.dispatchEvent`
+2. 当事件冒泡到 document 时，触发统一的事件分发函数  `ReactEventListener.dispatchEvent`
 3. 根据原生事件对象（nativeEvent）找到当前节点（即事件触发节点）对应的 ReactDOMComponent 对象
 4. 事件的合成
    1. 根据当前事件类型生成对应的合成对象
