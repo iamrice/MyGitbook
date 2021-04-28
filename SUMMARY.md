@@ -18,6 +18,7 @@
 * [面试：一个做微信支付的部门](job-interview/mian-shi-yi-ge-zuo-wei-xin-zhi-fu-de-bu-men.md)
 * [面试：PCG 技术中台](job-interview/mian-shi-pcg-ji-shu-zhong-tai.md)
 * [面试：字节跳动](job-interview/mian-shi-zi-jie-tiao-dong.md)
+* [面试：腾讯看点](job-interview/mian-shi-teng-xun-kan-dian.md)
 * [项目：前端小程序](job-interview/qian-duan-xiang-mu-zong-jie.md)
 * [项目：校园二手交易平台](job-interview/er-shou-jiao-yi-wang-zhan.md)
 * [准备：JavaScript 基础](job-interview/js-ji-chu.md)
