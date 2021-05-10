@@ -6,6 +6,7 @@
 
 * [阿泰随想录](life/mood-record.md)
 * [阿泰的运动记录](life/physical-exercise.md)
+* [我突然意识到](life/wo-tu-ran-yi-shi-dao.md)
 * [实用小工具](life/shi-yong-xiao-gong-ju.md)
 * [我喜欢的书籍](life/wo-xi-huan-de-shu-ji.md)
 * [我喜欢的影视作品](life/wo-xi-huan-de-ying-shi-zuo-pin.md)
