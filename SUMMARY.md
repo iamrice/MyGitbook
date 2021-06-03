@@ -47,4 +47,5 @@
 * [物理老师X的现身](article/wu-li-lao-shixde-xian-shen.md)
 * [当我在尝试写专访时，我在想些什么](article/dang-wo-zai-chang-shi-xie-zhuan-fang-shi-wo-zai-xiang-xie-shen-me.md)
 * [无题](article/wu-ti-1.md)
+* [百无聊赖的日子--聊聊效率](article/bai-wu-liao-lai-de-ri-zi-liao-liao-xiao-lv.md)
 
