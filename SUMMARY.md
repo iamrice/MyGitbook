@@ -12,6 +12,20 @@
 * [我喜欢的影视作品](life/wo-xi-huan-de-ying-shi-zuo-pin.md)
 * [我喜欢的音乐](life/wo-xi-huan-de-yin-le.md)
 
+## article
+
+* [回老家](article/hui-lao-jia.md)
+* [冬至随笔](article/dong-zhi-sui-bi.md)
+* [无题](article/wu-ti.md)
+* [明天周一了](article/ming-tian-zhou-yi-le.md)
+* [我想吃冰皮月饼](article/wo-xiang-chi-bing-pi-yue-bing.md)
+* [日出和日落](article/ri-chu-he-ri-luo.md)
+* [熊猫睡不着](article/xiong-mao-shui-bu-zhe.md)
+* [物理老师X的现身](article/wu-li-lao-shixde-xian-shen.md)
+* [当我在尝试写专访时，我在想些什么](article/dang-wo-zai-chang-shi-xie-zhuan-fang-shi-wo-zai-xiang-xie-shen-me.md)
+* [无题](article/wu-ti-1.md)
+* [百无聊赖的日子--聊聊效率](article/bai-wu-liao-lai-de-ri-zi-liao-liao-xiao-lv.md)
+
 ## job interview
 
 * [面试：腾讯互娱](job-interview/teng-xun-hu-yu-mian-shi.md)
@@ -34,18 +48,4 @@
 
 * [大规模优化中的资源分配](work-in-lab/da-gui-mo-you-hua-zhong-de-zi-yuan-fen-pei.md)
 * [关于演化博弈](work-in-lab/guan-yu-yan-hua-bo-yi.md)
-
-## article
-
-* [回老家](article/hui-lao-jia.md)
-* [冬至随笔](article/dong-zhi-sui-bi.md)
-* [无题](article/wu-ti.md)
-* [明天周一了](article/ming-tian-zhou-yi-le.md)
-* [我想吃冰皮月饼](article/wo-xiang-chi-bing-pi-yue-bing.md)
-* [日出和日落](article/ri-chu-he-ri-luo.md)
-* [熊猫睡不着](article/xiong-mao-shui-bu-zhe.md)
-* [物理老师X的现身](article/wu-li-lao-shixde-xian-shen.md)
-* [当我在尝试写专访时，我在想些什么](article/dang-wo-zai-chang-shi-xie-zhuan-fang-shi-wo-zai-xiang-xie-shen-me.md)
-* [无题](article/wu-ti-1.md)
-* [百无聊赖的日子--聊聊效率](article/bai-wu-liao-lai-de-ri-zi-liao-liao-xiao-lv.md)
 
